@@ -1,10 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
+import './assets/sass/styles.scss';
 import * as serviceWorker from './serviceWorker';
+import {
+  FirebaseProvider,
+  SelectedEntryProvider,
+  EntriesProvider,
+  PreviewerProvider,
+} from './context';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <FirebaseProvider>
+    <EntriesProvider>
+      <SelectedEntryProvider>
+        <PreviewerProvider>
+          <App />
+        </PreviewerProvider>
+      </SelectedEntryProvider>
+    </EntriesProvider>
+  </FirebaseProvider>,
+  document.getElementById('root'),
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

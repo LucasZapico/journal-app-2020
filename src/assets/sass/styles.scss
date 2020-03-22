@@ -1,0 +1,36 @@
+@import './base.scss';
+@import './color.scss';
+@import './typography.scss';
+@import './layout.scss';
+@import './button-links.scss';
+@import './form-elements.scss';
+@import './loading';
+@import './utilities.scss';
+@import './color-utilities.scss';
+
+#feature-bar {
+  position: absolute;
+  right: 0px;
+  padding: 0px;
+  border-radius: 5px;
+  top: 2rem;
+  background-color: darken($color-a, 15%);
+  & > div {
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    transition: all ease-in-out 0.3s;
+
+    &:hover {
+      box-shadow: 2px 2px 5px #333333;
+    }
+    &:focus {
+      box-shadow: 5px 5px 5px #333333;
+    }
+    &:active {
+      box-shadow: 5px 5px 5px #333333;
+    }
+  }
+}

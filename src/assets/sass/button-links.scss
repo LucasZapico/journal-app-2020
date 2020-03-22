@@ -1,0 +1,37 @@
+button,
+.btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+  font-family: inherit;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  height: 2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  transition: all ease-in-out 0.2s;
+  background-color: darken($color-a, 15%);
+
+  &:hover {
+    box-shadow: 2px 2px 5px #333333;
+  }
+  &:focus {
+    box-shadow: 5px 5px 5px #333333;
+  }
+  &:active {
+    box-shadow: 5px 5px 5px #333333;
+  }
+  &.btn--secondary {
+    background-color: transparent;
+    border: 1px solid darken($color-a, 20%);
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

@@ -1,3 +1,29 @@
+## Objective
+
+The objective of this project is to make a chronological markdown enabled journal.
+
+## Features Todo
+
+- auto resize text area
+  - add text area metrics --> word count, reading time
+- auto hide sidenav on word count
+- category filter
+- search
+- add syntax based category addition to markdown
+- add code preview with styling support
+- review general ux
+- add auto save and update
+- enhance show/hide sidenav preview/code/ etc views
+
+- **Support Accounts**
+- support multiple users
+  - add, remove users
+
+### Brain Storm
+
+- drag and drop categories to group as synonyms
+-
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

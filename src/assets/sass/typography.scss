@@ -1,0 +1,266 @@
+/*************
+**
+**  Variables
+************/
+// Typography
+$base-font-family: 'Open Sans', sans-serif;
+$header-font-family: 'Open Sans', sans-serif;
+$header-font-base-modile: 16px;
+$header-font-base: 16px;
+// Type hierarchy scaler
+$type-scaler: 1.25;
+
+.yotta,
+.zetta,
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  font-family: $header-font-family;
+  line-height: 1.4;
+  margin: 0px;
+  color: darken($color-a, 70%);
+}
+
+p {
+  margin-bottom: 1.3rem;
+}
+
+p,
+ul,
+ol,
+dl,
+figure,
+blockquote,
+table,
+hr {
+  line-height: 1.5;
+}
+
+.zetta {
+  font-size: $header-font-base-modile * $type-scaler * $type-scaler *
+    $type-scaler * $type-scaler * $type-scaler * $type-scaler *
+    $type-scaler;
+}
+
+h1,
+.h1,
+.exa {
+  font-size: $header-font-base-modile * $type-scaler * $type-scaler *
+    $type-scaler * $type-scaler * $type-scaler * $type-scaler;
+}
+
+h2,
+.h2,
+.peta {
+  font-size: $header-font-base-modile * $type-scaler * $type-scaler *
+    $type-scaler * $type-scaler * $type-scaler;
+}
+
+h3,
+.h3,
+.tera {
+  font-size: $header-font-base-modile * $type-scaler * $type-scaler *
+    $type-scaler * $type-scaler;
+}
+
+h4,
+.h4,
+.giga {
+  font-size: $header-font-base-modile * $type-scaler * $type-scaler *
+    $type-scaler;
+}
+
+h5,
+.h5,
+.mega {
+  font-size: $header-font-base-modile * $type-scaler * $type-scaler;
+}
+
+.kilo-1 {
+  font-size: $header-font-base-modile * $type-scaler;
+}
+
+h6,
+.h6,
+.kilo {
+  font-size: $header-font-base-modile;
+}
+
+.milli {
+  font-size: $header-font-base-modile/$type-scaler;
+}
+
+.micro {
+  font-size: 0.5rem;
+}
+
+em {
+  font-style: italic;
+}
+
+blockquote {
+  background-color: #fbfbfb;
+  padding: 0.5rem;
+  border-left: darken(#fbfbfb, 10%) solid 10px;
+}
+
+@media screen and (min-width: 700px) {
+  body {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: $header-font-family;
+    }
+
+    .zetta {
+      font-size: $header-font-base * $type-scaler * $type-scaler *
+        $type-scaler * $type-scaler * $type-scaler * $type-scaler *
+        $type-scaler;
+    }
+
+    h1,
+    .h1,
+    .exa {
+      font-size: $header-font-base * $type-scaler * $type-scaler *
+        $type-scaler * $type-scaler * $type-scaler * $type-scaler;
+    }
+
+    h2,
+    .h2,
+    .peta {
+      font-size: $header-font-base * $type-scaler * $type-scaler *
+        $type-scaler * $type-scaler * $type-scaler;
+    }
+
+    h3,
+    .h3,
+    .tera {
+      font-size: $header-font-base * $type-scaler * $type-scaler *
+        $type-scaler * $type-scaler;
+    }
+
+    h4,
+    .h4,
+    .giga {
+      font-size: $header-font-base * $type-scaler * $type-scaler *
+        $type-scaler;
+    }
+
+    h5,
+    .h5,
+    .mega {
+      font-size: $header-font-base * $type-scaler * $type-scaler;
+    }
+
+    .kilo-1 {
+      font-size: $header-font-base * $type-scaler;
+    }
+
+    h6,
+    .h6,
+    .kilo {
+      font-size: $header-font-base;
+    }
+
+    .milli {
+      font-size: 1 / $type-scaler;
+    }
+
+    .micro {
+      font-size: 0.5rem;
+    }
+
+    strong {
+      font-weight: bold;
+    }
+    em {
+      font-style: italic;
+    }
+
+    blockquote {
+      background-color: #fbfbfb;
+      padding: 0.5rem;
+      border-left: darken(#fbfbfb, 10%) solid 10px;
+    }
+  }
+}
+
+// breakpoints
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  font-size: 14px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  font-size: 16px;
+  .char-100 {
+    max-width: 620px;
+  }
+  p,
+  li,
+  input,
+  textarea,
+  .char-80 {
+    max-width: 520px;
+  }
+  .char-50 {
+    max-width: 320px;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+  font-size: 18px;
+  .char-100 {
+    max-width: 800px;
+  }
+  p,
+  li,
+  input,
+  textarea,
+  .char-80 {
+    max-width: 700px;
+  }
+  .char-50 {
+    max-width: 410px;
+  }
+}
+
+@media screen and (min-width: 1440px) and (max-width: 2200px) {
+  font-size: 24px;
+  .char-100 {
+    max-width: 1070px;
+  }
+  p,
+  li,
+  input,
+  textarea .char-80 {
+    max-width: 900px;
+  }
+  .char-50 {
+    max-width: 550px;
+  }
+}
+
+@media screen and (min-width: 2200px) and (max-width: 2800px) {
+  font-size: 36px;
+  .char-100 {
+    max-width: 1600px;
+  }
+  .char-80 {
+    max-width: 1340px;
+  }
+  .char-50 {
+    max-width: 820px;
+  }
+}

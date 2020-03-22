@@ -1,0 +1,122 @@
+html,
+body,
+#root {
+  font-family: sans-serif;
+  font-weight: 300;
+  height: 100%;
+  background-color: $color-a;
+  color: $color-type-primary;
+  * {
+    box-sizing: border-box;
+    & :focus {
+      outline: none;
+    }
+  }
+}
+
+#root {
+  #app-wrap {
+    height: 100%;
+    position: relative;
+    display: grid;
+    grid-template-columns: [col1-st] 1fr [col2-st] 1fr [col3-st] 1fr [col4-st] 1fr [col4-end] 1fr [col5-st] 1fr [col6-end] 1fr [col7-st] 1fr [col8-end];
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    padding: 0.5rem;
+    > div {
+      grid-column: 1 / span 4;
+    }
+
+    #content {
+      display: grid;
+      grid-template-columns: [col1-st] 1fr [col2-st] 1fr [col3-st] 1fr [col4-st] 1fr [col4-end] 1fr [col5-st] 1fr [col6-end] 1fr [col7-st] 1fr [col8-end];
+      #editor {
+        padding: 1rem;
+        grid-column: 1 / span 8;
+
+        input,
+        textarea {
+          width: 100%;
+          display: block;
+          border-bottom: solid 1px darken($color-a, 10%);
+          background-color: lighten($color-a, 5%);
+        }
+        textarea {
+          min-height: 70vh;
+        }
+        .categories {
+          color: #63666a;
+          font-size: 1rem;
+        }
+      }
+      #preview {
+        overflow: hidden;
+        width: 0px;
+      }
+
+      &.show-preview {
+        #editor {
+          grid-column: 1 / span 4;
+        }
+        #preview {
+          padding: 1rem;
+          width: auto;
+          grid-column: 5 / span 8;
+        }
+      }
+      &.show-markup {
+      }
+    }
+
+    #sidebar {
+      grid-row: 1 / span 4;
+      background-color: darken($color-a, 5%);
+      padding: 1rem;
+      position: absolute;
+      .items {
+        display: flex;
+        justify-content: space-between;
+        & > svg {
+          fill: lighten($color-type-primary, 20%);
+        }
+      }
+      .categories {
+        display: flex;
+        flex-wrap: wrap;
+        .category {
+          cursor: pointer;
+          border: 1px solid lighten($color-a, 5%);
+          padding: 0.3rem;
+          margin: 0.2rem;
+          min-width: 5rem;
+          text-align: center;
+          list-style-type: none;
+          &:hover {
+            border: 1px solid darken($color-a, 5%);
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 800px) {
+  #root {
+    #app-wrap {
+      > div {
+        grid-column: 3 / span 8;
+      }
+      #sidebar {
+        position: static;
+        grid-column: 1 / span 2;
+
+        .items {
+          cursor: pointer;
+          &:hover {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}

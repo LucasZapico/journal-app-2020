@@ -1,0 +1,25 @@
+{
+  "extends": ["prettier"],
+  "plugins": [
+    // ...
+    "prettier",
+    "react",
+    "react-hooks"
+  ],
+  "rules": {
+    // ...
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "quotes": ["error", "single"],
+    "singleQuote": true,
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "always",
+        "asyncArrow": "always"
+      }
+    ],
+    "prettier/prettier": ["error"]
+  }
+}
