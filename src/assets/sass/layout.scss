@@ -4,6 +4,7 @@ body,
   font-family: sans-serif;
   font-weight: 300;
   height: 100%;
+  margin: 0px;
   background-color: $color-a;
   color: $color-type-primary;
   * {
@@ -21,7 +22,6 @@ body,
     display: grid;
     grid-template-columns: [col1-st] 1fr [col2-st] 1fr [col3-st] 1fr [col4-st] 1fr [col4-end] 1fr [col5-st] 1fr [col6-end] 1fr [col7-st] 1fr [col8-end];
     grid-template-rows: 1fr 1fr 1fr 1fr;
-    padding: 0.5rem;
     > div {
       grid-column: 1 / span 4;
     }
@@ -94,6 +94,10 @@ body,
             border: 1px solid darken($color-a, 5%);
             font-weight: 600;
           }
+          &.category__selected {
+            font-weight: 600;
+            border: 1px solid darken($color-a, 5%);
+          }
         }
       }
     }
@@ -105,6 +109,7 @@ body,
     #app-wrap {
       > div {
         grid-column: 3 / span 8;
+        grid-row: 1 / span 4;
       }
       #sidebar {
         position: static;
@@ -117,6 +122,23 @@ body,
           }
         }
       }
+    }
+  }
+}
+
+// layout utilies
+
+.flex-container {
+  height: 100%;
+  display: flex;
+  &.flex--justify {
+    &__center {
+      justify-content: center;
+    }
+  }
+  &.flex--align {
+    &__center {
+      align-items: center;
     }
   }
 }

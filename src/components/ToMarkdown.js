@@ -44,7 +44,6 @@ something | something | something
 `;
 
 const ToMarkdown = ({ text }) => {
-  console.log(text);
   const result = Marked(text);
   return <div dangerouslySetInnerHTML={{ __html: result }}></div>;
 };

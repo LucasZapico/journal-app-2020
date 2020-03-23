@@ -26,10 +26,12 @@ export const generatePushId = (() => {
 export const generateCleanTags = str => {
   let arr = str.split(',');
   let result = arr.map(el => {
-    return el
-      .trim()
-      .toLowerCase()
-      .replace(' ', '-');
+    if (el.trim.length > 0) {
+      return el
+        .trim()
+        .toLowerCase()
+        .replace(' ', '-');
+    }
   });
   return result;
 };

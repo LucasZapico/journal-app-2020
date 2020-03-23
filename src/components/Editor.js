@@ -27,6 +27,9 @@ const Editor = () => {
       .collection('entries')
       .doc(entry.entryId)
       .update(entry)
+      .then(() => {
+        setEntries([...entries]);
+      })
       .catch(err => console.error(err));
   };
 
@@ -36,23 +39,37 @@ const Editor = () => {
       .doc(entry.entryId)
       .delete()
       .then(() => {
+        setSelectedEntry({
+          title: '',
+          entryBody: '',
+          categories: [],
+        });
         setEntries([...entries]);
       })
       .catch(err => console.error(err));
   };
-  // Todo:  Make parse
-  // const parseBody = str => {
-  //   let result = '';
-  //   if (str.length > 0) {
-  //     str.split(' ');
-  //   }
 
-  //   console.log('body parser', result);
-  // };
   const renderCategories = catArr => {
     catArr.map(cat => (
       <span className="categories__item">{cat}</span>
     ));
+  };
+
+  const test = body => {
+    let newBody = body;
+    console.log('body', body);
+
+    if (body.includes('date-created')) {
+      console.log('includes date', body.indexOf('date-created'));
+
+      let newStr = `date-created ${entry.dateCreated}`;
+      console.log(typeof newStr);
+      newBody = newBody.replace('date-created', newStr);
+      console.log('newbody', newBody);
+    }
+    setEntry(prevEntry => {
+      return { ...prevEntry, entryBody: newBody };
+    });
   };
 
   return (
@@ -61,6 +78,7 @@ const Editor = () => {
         <>
           <input
             onChange={e => {
+              console.log('editor', entry);
               setSelectedEntry(prevEntry => {
                 return { ...prevEntry, title: e.target.value };
               });
@@ -88,6 +106,7 @@ const Editor = () => {
             type="text"
             value={selectedEntry.entryBody}
             onChange={e => {
+              test(e.target.value);
               let dateUpdated = new Date();
               dateUpdated = moment(dateUpdated, 'LLL').format();
               setSelectedEntry({

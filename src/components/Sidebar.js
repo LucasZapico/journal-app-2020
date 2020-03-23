@@ -13,9 +13,16 @@ import { union } from 'lodash';
 
 const Sidebar = () => {
   const { entries, setEntries } = useEntriesValue();
+
   const firebase = useFirebaseValue(FirebaseContext);
-  const { setSelectedEntry } = useSelectedEntryValue();
+  const {
+    setSelectedEntry,
+    setSelectedCategory,
+    selectedCategory,
+  } = useSelectedEntryValue();
   const entryId = generatePushId();
+  const newId = generatePushId();
+  const [isNewEntry, setIsNewEntry] = useState(false);
   const [entry, setEntry] = useState({
     title: '',
     entryBody: '',
@@ -29,11 +36,17 @@ const Sidebar = () => {
     allCategories = union(allCategories, en.categories);
   });
 
-  console.log(allCategories);
-
   useEffect(() => {
     setSelectedEntry(entry);
   }, [entry, setSelectedEntry]);
+
+  useEffect(() => {
+    if (isNewEntry === true) {
+      addEntry();
+      setIsNewEntry(false);
+    }
+    console.log('new entry', entry, 'new entry', isNewEntry);
+  }, [entry]);
 
   const addEntry = () => {
     firebase.db
@@ -53,7 +66,16 @@ const Sidebar = () => {
 
   return (
     <div id="sidebar">
-      <Link className="home" to="/">
+      <Link
+        className="home"
+        to="/"
+        onClick={() =>
+          setSelectedEntry({
+            title: '',
+            entryBody: '',
+          })
+        }
+      >
         <FaFileAlt />
       </Link>
       {/*
@@ -66,16 +88,22 @@ const Sidebar = () => {
         <ul className="margin--vert">
           {entries && entries.length > 0 ? (
             recent.map(entri => (
-              <li
-                className="items"
-                onClick={() => setSelectedEntry(entri)}
-                key={entri.entryId}
-              >
-                <span className="margin--right">
-                  {toTitleCase(entri.title)}{' '}
-                </span>
-                <FaFileAlt />
-              </li>
+              <Link key={entri.entryId} to="/">
+                {' '}
+                <li
+                  key={entri.entryId}
+                  className="items"
+                  onClick={() => {
+                    console.log('clicked', entri);
+                    setSelectedEntry(entri);
+                  }}
+                >
+                  <span className="margin--right">
+                    {toTitleCase(entri.title)}{' '}
+                  </span>
+                  <FaFileAlt />
+                </li>
+              </Link>
             ))
           ) : (
             <div className="loading">
@@ -86,8 +114,9 @@ const Sidebar = () => {
           )}
         </ul>
         <Link
-          to="/all-entries"
+          to="/list-entries"
           className="btn btn--secondary margin-vert"
+          onClick={() => setSelectedCategory('')}
         >
           All Entries
         </Link>
@@ -98,7 +127,19 @@ const Sidebar = () => {
           <div className="categories container margin--vert">
             {allCategories ? (
               allCategories.map(cat => (
-                <li className="category">{cat}</li>
+                <Link key={cat + newId} to="/list-entries">
+                  {' '}
+                  <li
+                    className={
+                      selectedCategory === cat
+                        ? 'category category__selected'
+                        : 'category'
+                    }
+                    onClick={() => setSelectedCategory(cat)}
+                  >
+                    {cat}
+                  </li>
+                </Link>
               ))
             ) : (
               <div className="loading">
@@ -112,15 +153,10 @@ const Sidebar = () => {
       ) : (
         undefined
       )}
-
-      <input
-        className="margin--top"
-        placeholder="Entry Title"
-        onChange={e => setEntry({ ...entry, title: e.target.value })}
-      ></input>
       <button
         className="margin--top"
         onClick={() => {
+          setIsNewEntry(!isNewEntry);
           let dateCreated = new Date();
           dateCreated = moment(dateCreated, 'LLL').format();
           setEntry(prevEntry => {
@@ -132,7 +168,6 @@ const Sidebar = () => {
               user: 'luca',
             };
           });
-          addEntry();
         }}
       >
         New Entry

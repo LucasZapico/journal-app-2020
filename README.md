@@ -14,10 +14,13 @@ The objective of this project is to make a chronological markdown enabled journa
 - review general ux
 - add auto save and update
 - enhance show/hide sidenav preview/code/ etc views
+- accessibility
+- refine style classes
 
-- **Support Accounts**
-- support multiple users
+* **Support Accounts**
+* support multiple users
   - add, remove users
+  - add landing page
 
 ### Brain Storm
 

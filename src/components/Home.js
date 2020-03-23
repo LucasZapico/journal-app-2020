@@ -6,14 +6,16 @@ import { usePreviewerValue, useSelectedEntryValue } from '../context';
 const Home = () => {
   const { showPreview } = usePreviewerValue();
   const { selectedEntry } = useSelectedEntryValue();
-  console.log('home', selectedEntry);
+
   return (
     <div>
-      {selectedEntry.title === '' ? (
-        <div className="filler">
-          <h4>
-            Write something amazing, simple, clear, informative!
-          </h4>
+      {!selectedEntry ? (
+        <div className="flex-container flex--justify__center flex--align__center">
+          <div className="card">
+            <h4>
+              Write something amazing, simple, clear, informative!
+            </h4>
+          </div>
         </div>
       ) : (
         <div

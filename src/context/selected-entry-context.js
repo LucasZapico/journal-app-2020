@@ -7,10 +7,16 @@ export const SelectedEntryProvider = ({ children }) => {
     title: '',
     entryBody: '',
   });
+  const [selectedCategory, setSelectedCategory] = useState();
 
   return (
     <SelectedEntryContext.Provider
-      value={{ selectedEntry, setSelectedEntry }}
+      value={{
+        selectedEntry,
+        setSelectedEntry,
+        selectedCategory,
+        setSelectedCategory,
+      }}
     >
       {children}
     </SelectedEntryContext.Provider>
