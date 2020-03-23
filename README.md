@@ -1,8 +1,12 @@
 ## Objective
 
-The objective of this project is to make a chronological markdown enabled journal.
+The objective of this project is to make a chronological markdown enabled journal using React hook, context and firebase.
+
+The current status of the app can be [viewed here](https://journal-app-2020.web.app/)
 
 ## Features Todo
+
+_A running todo list because I haven't got around to setting up proper project management for this app._
 
 - auto resize text area
   - add text area metrics --> word count, reading time
