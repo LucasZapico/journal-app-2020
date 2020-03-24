@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <div>
-      {!selectedEntry ? (
+      {selectedEntry.dateCreated == undefined ? (
         <div className="flex-container flex--justify__center flex--align__center">
           <div className="card">
             <h4>

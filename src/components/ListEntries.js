@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useEntriesValue, useSelectedEntryValue } from '../context';
+import {
+  useEntriesValue,
+  useSelectedEntryValue,
+  useFirebaseValue,
+  FirebaseContext,
+} from '../context';
 import moment from 'moment';
+import { FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const ListEntries = () => {
@@ -8,7 +14,8 @@ const ListEntries = () => {
     setSelectedEntry,
     selectedCategory,
   } = useSelectedEntryValue();
-  const { entries } = useEntriesValue();
+  const firebase = useFirebaseValue(FirebaseContext);
+  const { entries, setEntries } = useEntriesValue();
   const [entryList, setEntryList] = useState(entries);
 
   useEffect(() => {
@@ -16,31 +23,41 @@ const ListEntries = () => {
   }, [entries]);
 
   useEffect(() => {
+    console.log('selec-cat', selectedCategory);
     let entriesFilted = '';
-    if (entries.length > 0) {
+    if (entries.length > 0 && selectedCategory !== '') {
       entriesFilted = entries.filter(entri =>
         entri.categories.includes(selectedCategory),
       );
       setEntryList(entriesFilted);
+    } else {
+      setEntryList(entries);
     }
 
-    console.log(
-      'filtered entry',
-      entryList,
-      'category',
-      selectedCategory,
-    );
+    console.log('entrylist', entryList, 'category', selectedCategory);
   }, [selectedCategory]);
+
+  const deleteEntry = entry => {
+    firebase.db
+      .collection('entries')
+      .doc(entry.entryId)
+      .delete()
+      .then(() => {
+        setEntries([...entries]);
+      })
+      .catch(err => console.error(err));
+  };
 
   return (
     <div className="entries">
       {entryList &&
         entryList.map(entry => (
-          <Link key={entry.entryId} to="/">
-            <div
-              className="entry margin--all margin--bottom__m"
-              onClick={() => setSelectedEntry(entry)}
-            >
+          <div
+            key={entry.entryId}
+            className="entry margin--all margin--bottom__m"
+            onClick={() => setSelectedEntry(entry)}
+          >
+            <Link to="/">
               <h5 className="margin--vert">{entry.title}</h5>
               <div>
                 <h6 className="type-color--secondary milli">
@@ -52,8 +69,15 @@ const ListEntries = () => {
                   {moment(entry.dateUpdated).format('MM/DD/YY')}
                 </h6>
               </div>
-            </div>
-          </Link>
+            </Link>
+            <button
+              className="btn btn--secondary margin--all"
+              onClick={() => deleteEntry(entry)}
+            >
+              <FaTrashAlt />
+              <span className="margin--left">Delete Entry Entry</span>
+            </button>
+          </div>
         ))}
     </div>
   );

@@ -73,7 +73,9 @@ body,
       padding: 1rem;
       position: absolute;
       .items {
+        display: block;
         display: flex;
+        margin-bottom: 0.3rem;
         justify-content: space-between;
         & > svg {
           fill: lighten($color-type-primary, 20%);

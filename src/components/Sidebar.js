@@ -153,25 +153,27 @@ const Sidebar = () => {
       ) : (
         undefined
       )}
-      <button
-        className="margin--top"
-        onClick={() => {
-          setIsNewEntry(!isNewEntry);
-          let dateCreated = new Date();
-          dateCreated = moment(dateCreated, 'LLL').format();
-          setEntry(prevEntry => {
-            return {
-              ...prevEntry,
-              entryId: entryId,
-              dateCreated: dateCreated,
-              entryBody: '',
-              user: 'luca',
-            };
-          });
-        }}
-      >
-        New Entry
-      </button>
+      <Link to="/">
+        <button
+          className="margin--top"
+          onClick={() => {
+            setIsNewEntry(!isNewEntry);
+            let dateCreated = new Date();
+            dateCreated = moment(dateCreated, 'LLL').format();
+            setEntry(prevEntry => {
+              return {
+                ...prevEntry,
+                entryId: entryId,
+                dateCreated: dateCreated,
+                entryBody: '',
+                user: 'luca',
+              };
+            });
+          }}
+        >
+          New Entry
+        </button>
+      </Link>
     </div>
   );
 };

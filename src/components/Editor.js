@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   useSelectedEntryValue,
   useFirebaseValue,
@@ -7,7 +7,7 @@ import {
 } from '../context';
 import moment from 'moment';
 import { FaTrashAlt } from 'react-icons/fa';
-import { generateCleanTags } from '../helpers';
+import { deleteFBEntry, generateCleanTags } from '../helpers';
 
 const Editor = () => {
   const firebase = useFirebaseValue(FirebaseContext);
@@ -15,6 +15,7 @@ const Editor = () => {
   const { selectedEntry, setSelectedEntry } = useSelectedEntryValue();
 
   const [entry, setEntry] = useState({ title: '', entryBody: '' });
+  const prevEntryRef = useRef();
 
   useEffect(() => {
     if (selectedEntry) {
@@ -32,6 +33,13 @@ const Editor = () => {
       })
       .catch(err => console.error(err));
   };
+
+  // const passiveUpdate = e => {
+  //   setEntry(prevEntry => {
+  //     if (prevEntry.entryBody) {
+  //     }
+  //   });
+  // };
 
   const deleteEntry = e => {
     firebase.db
