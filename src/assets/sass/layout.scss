@@ -17,7 +17,7 @@ body,
 
 #root {
   #app-wrap {
-    height: 100%;
+    min-height: 100%;
     position: relative;
     display: grid;
     grid-template-columns: [col1-st] 1fr [col2-st] 1fr [col3-st] 1fr [col4-st] 1fr [col4-end] 1fr [col5-st] 1fr [col6-end] 1fr [col7-st] 1fr [col8-end];
@@ -32,7 +32,9 @@ body,
       #editor {
         padding: 1rem;
         grid-column: 1 / span 8;
-
+        & > * {
+          margin: auto;
+        }
         input,
         textarea {
           width: 100%;

@@ -6,16 +6,18 @@ import {
   useEntriesValue,
 } from '../context';
 import moment from 'moment';
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt, FaSyncAlt } from 'react-icons/fa';
 import { deleteFBEntry, generateCleanTags } from '../helpers';
 
 const Editor = () => {
   const firebase = useFirebaseValue(FirebaseContext);
   const { entries, setEntries } = useEntriesValue();
   const { selectedEntry, setSelectedEntry } = useSelectedEntryValue();
-
   const [entry, setEntry] = useState({ title: '', entryBody: '' });
-  const prevEntryRef = useRef();
+  const [entryInterval, setEntryInterval] = useState(entry);
+  let numberOfChanges = Math.abs(
+    entryInterval.entryBody.length - entry.entryBody.length,
+  );
 
   useEffect(() => {
     if (selectedEntry) {
@@ -30,16 +32,24 @@ const Editor = () => {
       .update(entry)
       .then(() => {
         setEntries([...entries]);
+        setEntryInterval(entry);
       })
       .catch(err => console.error(err));
   };
 
-  // const passiveUpdate = e => {
-  //   setEntry(prevEntry => {
-  //     if (prevEntry.entryBody) {
-  //     }
-  //   });
-  // };
+  useEffect(() => {
+    if (numberOfChanges > 10) {
+      setEntryInterval(entry);
+      updateEntry();
+    }
+  }, [entry]);
+
+  const passiveUpdate = e => {
+    setEntry(prevEntry => {
+      if (prevEntry.entryBody) {
+      }
+    });
+  };
 
   const deleteEntry = e => {
     firebase.db
@@ -61,6 +71,12 @@ const Editor = () => {
     catArr.map(cat => (
       <span className="categories__item">{cat}</span>
     ));
+  };
+
+  const reSizeTextArea = e => {
+    e.target.style.height = 'inherit';
+    let newHeight = e.target.scrollHeight * 1.1;
+    e.target.style.height = `${newHeight}px`;
   };
 
   const test = body => {
@@ -114,6 +130,7 @@ const Editor = () => {
             type="text"
             value={selectedEntry.entryBody}
             onChange={e => {
+              reSizeTextArea(e);
               test(e.target.value);
               let dateUpdated = new Date();
               dateUpdated = moment(dateUpdated, 'LLL').format();
@@ -124,16 +141,24 @@ const Editor = () => {
               });
             }}
           ></textarea>
-          <button className="margin--all" onClick={updateEntry}>
-            Save Entry
-          </button>
-          <button
-            className="btn btn--secondary margin--all"
-            onClick={deleteEntry}
-          >
-            <FaTrashAlt />
-            <span className="margin--left">Delete Entry Entry</span>
-          </button>
+          <div>
+            <button className="margin--all" onClick={updateEntry}>
+              {numberOfChanges !== 0 ? (
+                <span>
+                  Save {numberOfChanges} changes <FaSyncAlt />
+                </span>
+              ) : (
+                'Saved'
+              )}
+            </button>
+            <button
+              className="btn btn--secondary margin--all"
+              onClick={deleteEntry}
+            >
+              <FaTrashAlt />
+              <span className="margin--left">Delete Entry Entry</span>
+            </button>
+          </div>
         </>
       ) : (
         <div className="loading">
