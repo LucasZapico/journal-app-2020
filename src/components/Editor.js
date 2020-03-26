@@ -15,6 +15,7 @@ const Editor = () => {
   const { selectedEntry, setSelectedEntry } = useSelectedEntryValue();
   const [entry, setEntry] = useState({ title: '', entryBody: '' });
   const [entryInterval, setEntryInterval] = useState(entry);
+  const textArea = useRef();
   let numberOfChanges = Math.abs(
     entryInterval.entryBody.length - entry.entryBody.length,
   );
@@ -38,6 +39,8 @@ const Editor = () => {
   };
 
   useEffect(() => {
+    console.log('text area', textArea);
+    reSizeTextArea(textArea);
     if (numberOfChanges > 10) {
       setEntryInterval(entry);
       updateEntry();
@@ -73,10 +76,15 @@ const Editor = () => {
     ));
   };
 
-  const reSizeTextArea = e => {
-    e.target.style.height = 'inherit';
-    let newHeight = e.target.scrollHeight * 1.1;
-    e.target.style.height = `${newHeight}px`;
+  const reSizeTextArea = el => {
+    console.dir(el);
+    console.log(el.current);
+    if (el.current !== undefined) {
+      console.log('ran');
+      el.current.style.height = 'inherit';
+      let newHeight = el.current.scrollHeight * 1.1;
+      el.current.style.height = `${newHeight}px`;
+    }
   };
 
   const test = body => {
@@ -128,6 +136,7 @@ const Editor = () => {
             autoComplete="off"
             aria-label="Journal Entry"
             type="text"
+            ref={textArea}
             value={selectedEntry.entryBody}
             onChange={e => {
               reSizeTextArea(e);
