@@ -94,7 +94,6 @@ const Sidebar = () => {
                   key={entri.entryId}
                   className="items"
                   onClick={() => {
-                    console.log('clicked', entri);
                     setSelectedEntry(entri);
                   }}
                 >

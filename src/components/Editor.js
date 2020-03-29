@@ -7,7 +7,7 @@ import {
 } from '../context';
 import moment from 'moment';
 import { FaTrashAlt, FaSyncAlt } from 'react-icons/fa';
-import { deleteFBEntry, generateCleanTags } from '../helpers';
+import { generateCleanTags } from '../helpers';
 
 const Editor = () => {
   const firebase = useFirebaseValue(FirebaseContext);
@@ -16,15 +16,10 @@ const Editor = () => {
   const [entry, setEntry] = useState({ title: '', entryBody: '' });
   const [entryInterval, setEntryInterval] = useState(entry);
   const textArea = useRef();
+
   let numberOfChanges = Math.abs(
     entryInterval.entryBody.length - entry.entryBody.length,
   );
-
-  useEffect(() => {
-    if (selectedEntry) {
-      setEntry(selectedEntry);
-    }
-  }, [selectedEntry]);
 
   const updateEntry = e => {
     firebase.db
@@ -39,13 +34,16 @@ const Editor = () => {
   };
 
   useEffect(() => {
-    console.log('text area', textArea);
+    if (selectedEntry) {
+      setEntry(selectedEntry);
+    }
     reSizeTextArea(textArea);
     if (numberOfChanges > 10) {
-      setEntryInterval(entry);
+      setEntryInterval(selectedEntry);
       updateEntry();
     }
-  }, [entry]);
+    console.log('change', selectedEntry);
+  }, [selectedEntry]);
 
   const passiveUpdate = e => {
     setEntry(prevEntry => {
@@ -77,10 +75,7 @@ const Editor = () => {
   };
 
   const reSizeTextArea = el => {
-    console.dir(el);
-    console.log(el.current);
     if (el.current !== undefined) {
-      console.log('ran');
       el.current.style.height = 'inherit';
       let newHeight = el.current.scrollHeight * 1.1;
       el.current.style.height = `${newHeight}px`;
@@ -89,7 +84,7 @@ const Editor = () => {
 
   const test = body => {
     let newBody = body;
-    console.log('body', body);
+    // console.log('body', body);
 
     if (body.includes('date-created')) {
       console.log('includes date', body.indexOf('date-created'));
@@ -97,11 +92,12 @@ const Editor = () => {
       let newStr = `date-created ${entry.dateCreated}`;
       console.log(typeof newStr);
       newBody = newBody.replace('date-created', newStr);
-      console.log('newbody', newBody);
+      // console.log('newbody', newBody);
     }
-    setEntry(prevEntry => {
+    setSelectedEntry(prevEntry => {
       return { ...prevEntry, entryBody: newBody };
     });
+    // console.log('test', selectedEntry.entryBody);
   };
 
   return (
@@ -139,6 +135,7 @@ const Editor = () => {
             ref={textArea}
             value={selectedEntry.entryBody}
             onChange={e => {
+              console.log(selectedEntry.entryBody);
               reSizeTextArea(e);
               test(e.target.value);
               let dateUpdated = new Date();

@@ -41,10 +41,13 @@ export const toTitleCase = str => {
   let result = [];
   if (str.length > 0) {
     strArr.forEach(w => {
-      let wordCap = w[0].toUpperCase() + w.slice(1);
-      result.push(wordCap);
+      if (w.length > 0) {
+        let wordCap = w[0].toUpperCase() + w.slice(1);
+        result.push(wordCap);
+      }
     });
+    return result.join(' ');
+  } else {
+    return '';
   }
-
-  return result.join(' ');
 };
