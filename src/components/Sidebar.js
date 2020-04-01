@@ -8,7 +8,11 @@ import {
 } from '../context';
 import moment from 'moment';
 import { generatePushId, toTitleCase } from '../helpers';
-import { FaFileAlt } from 'react-icons/fa';
+import {
+  FaFileAlt,
+  FaChevronLeft,
+  FaChevronRight,
+} from 'react-icons/fa';
 import { union } from 'lodash';
 
 const Sidebar = () => {
@@ -66,6 +70,9 @@ const Sidebar = () => {
 
   return (
     <div id="sidebar">
+      <div className="sidebar--toggle">
+        <FaChevronLeft />
+      </div>
       <Link
         className="home"
         to="/"

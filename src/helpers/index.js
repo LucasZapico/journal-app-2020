@@ -24,15 +24,16 @@ export const generatePushId = (() => {
 })();
 
 export const generateCleanTags = str => {
+  console.log(str);
   let arr = str.split(',');
+
   let result = arr.map(el => {
-    if (el.trim.length > 0) {
-      return el
-        .trim()
-        .toLowerCase()
-        .replace(' ', '-');
+    console.log();
+    if (el.trim().length > 0) {
+      return el.trim();
     }
   });
+  console.log(result);
   return result;
 };
 

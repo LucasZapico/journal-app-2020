@@ -7,7 +7,7 @@ import {
 } from '../context';
 import moment from 'moment';
 import { FaTrashAlt, FaSyncAlt } from 'react-icons/fa';
-import { generateCleanTags } from '../helpers';
+import { generateCleanTags, parseCategories } from '../helpers';
 
 const Editor = () => {
   const firebase = useFirebaseValue(FirebaseContext);
@@ -16,7 +16,9 @@ const Editor = () => {
   const [entry, setEntry] = useState({ title: '', entryBody: '' });
   const [entryInterval, setEntryInterval] = useState(entry);
   const textArea = useRef();
-
+  const [entryChanged, setEntryChanged] = useState(false);
+  const categoryRex = /^__?c__([^\s])__?c__|^__?c__([^\s][\s\S]*?[^\s])__?c__/gim;
+  const titleRex = /^ {0,3}(#{1}) +([^\n]*?)(?: +#+)? *(?:\n+|$)/gim;
   let numberOfChanges = Math.abs(
     entryInterval.entryBody.length - entry.entryBody.length,
   );
@@ -34,23 +36,16 @@ const Editor = () => {
   };
 
   useEffect(() => {
-    if (selectedEntry) {
-      setEntry(selectedEntry);
-    }
     reSizeTextArea(textArea);
     if (numberOfChanges > 10) {
       setEntryInterval(selectedEntry);
       updateEntry();
     }
-    console.log('change', selectedEntry);
+    if (entryChanged) {
+      setSelectedEntry(selectedEntry);
+      console.log('upded', selectedEntry);
+    }
   }, [selectedEntry]);
-
-  const passiveUpdate = e => {
-    setEntry(prevEntry => {
-      if (prevEntry.entryBody) {
-      }
-    });
-  };
 
   const deleteEntry = e => {
     firebase.db
@@ -68,6 +63,62 @@ const Editor = () => {
       .catch(err => console.error(err));
   };
 
+  const updateEntryBody = e => {
+    let body = e.target.value;
+    let categoriesSet = new Set();
+    let newCat = [];
+    let newBody = body;
+
+    // handle title
+
+    let newTitle = titleRex.exec(body);
+    if (newTitle != null) {
+      setSelectedEntry(prevEntry => {
+        return { ...prevEntry, title: newTitle[2] };
+      });
+      // setEntryChanged(true);
+    }
+
+    // update date stamp
+    if (body.includes('add-date-created')) {
+      let formatedDate = moment(selectedEntry.dateCreated).format(
+        'MMMM DD  YYYY',
+      );
+      let newStr = `date-created ${formatedDate}`;
+      newBody.replace('add-date-created', newStr);
+      setEntryChanged(true);
+      console.log('test', selectedEntry.entryBody);
+    }
+
+    // get all instance of elements with category syntax
+    while ((newCat = categoryRex.exec(body)) != null) {
+      // handle multiple categories defined in single syntax block
+      let tmpArr = newCat[2].split(',');
+      tmpArr.forEach(el =>
+        // clean for consistency
+        categoriesSet.add(
+          el
+            .trim()
+            .toLowerCase()
+            .replace(' ', '-'),
+        ),
+      );
+    }
+    if (categoriesSet) {
+      let newCategories = Array.from(categoriesSet);
+      console.log(categoriesSet);
+      setSelectedEntry(prevEntry => {
+        return { ...prevEntry, categories: newCategories };
+      });
+      setEntryChanged(true);
+    }
+
+    setSelectedEntry(prevEntry => {
+      return { ...prevEntry, entryBody: newBody };
+    });
+    setEntry(selectedEntry);
+  };
+
   const renderCategories = catArr => {
     catArr.map(cat => (
       <span className="categories__item">{cat}</span>
@@ -82,71 +133,28 @@ const Editor = () => {
     }
   };
 
-  const test = body => {
-    let newBody = body;
-    // console.log('body', body);
-
-    if (body.includes('date-created')) {
-      console.log('includes date', body.indexOf('date-created'));
-
-      let newStr = `date-created ${entry.dateCreated}`;
-      console.log(typeof newStr);
-      newBody = newBody.replace('date-created', newStr);
-      // console.log('newbody', newBody);
-    }
-    setSelectedEntry(prevEntry => {
-      return { ...prevEntry, entryBody: newBody };
-    });
-    // console.log('test', selectedEntry.entryBody);
-  };
-
   return (
     <div id="editor" className="margin--hor">
       {selectedEntry ? (
         <>
-          <input
-            onChange={e => {
-              console.log('editor', entry);
-              setSelectedEntry(prevEntry => {
-                return { ...prevEntry, title: e.target.value };
-              });
-            }}
-            type="text"
-            value={selectedEntry.title}
-          ></input>
-          <input
-            className="categories"
-            type="text"
-            placeholder="categories"
-            value={selectedEntry.categories}
-            onChange={e => {
-              setSelectedEntry(prevEntry => {
-                return {
-                  ...prevEntry,
-                  categories: generateCleanTags(e.target.value),
-                };
-              });
-            }}
-          ></input>
+          <div className="char-80 categories padding--vert padding--left">
+            <h4>{selectedEntry.title}</h4>
+          </div>
           <textarea
             autoComplete="off"
             aria-label="Journal Entry"
             type="text"
             ref={textArea}
             value={selectedEntry.entryBody}
-            onChange={e => {
-              console.log(selectedEntry.entryBody);
-              reSizeTextArea(e);
-              test(e.target.value);
-              let dateUpdated = new Date();
-              dateUpdated = moment(dateUpdated, 'LLL').format();
-              setSelectedEntry({
-                ...selectedEntry,
-                dateUpdated: dateUpdated,
-                entryBody: e.target.value,
-              });
-            }}
+            onChange={e => updateEntryBody(e)}
           ></textarea>
+          <div className="char-80 categories padding--vert">
+            {selectedEntry.categories
+              ? selectedEntry.categories.map(cat => (
+                  <li className="category">{cat}</li>
+                ))
+              : undefined}
+          </div>
           <div>
             <button className="margin--all" onClick={updateEntry}>
               {numberOfChanges !== 0 ? (
