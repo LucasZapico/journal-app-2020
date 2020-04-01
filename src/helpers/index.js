@@ -24,15 +24,16 @@ export const generatePushId = (() => {
 })();
 
 export const generateCleanTags = str => {
+  console.log(str);
   let arr = str.split(',');
+
   let result = arr.map(el => {
-    if (el.trim.length > 0) {
-      return el
-        .trim()
-        .toLowerCase()
-        .replace(' ', '-');
+    console.log();
+    if (el.trim().length > 0) {
+      return el.trim();
     }
   });
+  console.log(result);
   return result;
 };
 
@@ -41,10 +42,13 @@ export const toTitleCase = str => {
   let result = [];
   if (str.length > 0) {
     strArr.forEach(w => {
-      let wordCap = w[0].toUpperCase() + w.slice(1);
-      result.push(wordCap);
+      if (w.length > 0) {
+        let wordCap = w[0].toUpperCase() + w.slice(1);
+        result.push(wordCap);
+      }
     });
+    return result.join(' ');
+  } else {
+    return '';
   }
-
-  return result.join(' ');
 };

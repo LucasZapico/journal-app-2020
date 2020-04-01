@@ -8,6 +8,7 @@ The current status of the app can be [viewed here](https://journal-app-2020.web.
 
 _A running todo list because I haven't got around to setting up proper project management for this app._
 
+- delete category in entry view on click
 - auto resize text area
   - add text area metrics --> word count, reading time
 - auto hide sidenav on word count
@@ -29,7 +30,7 @@ _A running todo list because I haven't got around to setting up proper project m
 ### Brain Storm
 
 - drag and drop categories to group as synonyms
--
+- leave categories case and spaces only sanitize behind the sene
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
