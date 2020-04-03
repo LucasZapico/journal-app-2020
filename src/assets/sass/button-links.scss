@@ -19,14 +19,13 @@ button,
   &:hover {
     box-shadow: 2px 2px 5px #333333;
   }
-  &:focus {
-    box-shadow: 5px 5px 5px #333333;
-  }
+
   &:active {
     box-shadow: 5px 5px 5px #333333;
   }
   &.btn--secondary {
-    background-color: transparent;
+    // background-color: transparent;
+    background-color: $color-a;
     border: 1px solid darken($color-a, 20%);
   }
 }

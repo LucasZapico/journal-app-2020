@@ -8,17 +8,20 @@ import {
   SelectedEntryProvider,
   EntriesProvider,
   PreviewerProvider,
+  AuthProvider,
 } from './context';
 
 ReactDOM.render(
   <FirebaseProvider>
-    <EntriesProvider>
-      <SelectedEntryProvider>
-        <PreviewerProvider>
-          <App />
-        </PreviewerProvider>
-      </SelectedEntryProvider>
-    </EntriesProvider>
+    <AuthProvider>
+      <EntriesProvider>
+        <SelectedEntryProvider>
+          <PreviewerProvider>
+            <App />
+          </PreviewerProvider>
+        </SelectedEntryProvider>
+      </EntriesProvider>
+    </AuthProvider>
   </FirebaseProvider>,
   document.getElementById('root'),
 );

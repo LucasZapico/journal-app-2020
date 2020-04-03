@@ -2,13 +2,15 @@ import React from 'react';
 import Editor from './Editor';
 import Preview from './Preview';
 import { usePreviewerValue, useSelectedEntryValue } from '../context';
+import FeatureBar from './FeatureBar';
 
 const Home = () => {
   const { showPreview } = usePreviewerValue();
   const { selectedEntry } = useSelectedEntryValue();
 
   return (
-    <div>
+    <div className="editor-wrapper">
+      {/* <FeatureBar /> */}
       {selectedEntry.dateCreated == undefined ? (
         <div className="flex-container flex--justify__center flex--align__center">
           <div className="card">

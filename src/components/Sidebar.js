@@ -5,6 +5,7 @@ import {
   FirebaseContext,
   useSelectedEntryValue,
   useEntriesValue,
+  useAuthValue,
 } from '../context';
 import moment from 'moment';
 import { generatePushId, toTitleCase } from '../helpers';
@@ -14,10 +15,11 @@ import {
   FaChevronRight,
 } from 'react-icons/fa';
 import { union } from 'lodash';
+import SignOutButton from './SignOut';
 
 const Sidebar = () => {
   const { entries, setEntries } = useEntriesValue();
-
+  const { currentUser } = useAuthValue();
   const firebase = useFirebaseValue(FirebaseContext);
   const {
     setSelectedEntry,
@@ -32,6 +34,7 @@ const Sidebar = () => {
     entryBody: '',
     categories: [],
   });
+  const [toggleSidebar, setToggleSidebar] = useState(false);
 
   // return all categories
 
@@ -58,7 +61,11 @@ const Sidebar = () => {
       .add(entry)
       .then(docRef => {
         setEntry(prevEntry => {
-          return { ...prevEntry, entryId: docRef.id };
+          return {
+            ...prevEntry,
+            entryId: docRef.id,
+            user: currentUser.email,
+          };
         });
         setEntries([...entries]);
       })
@@ -69,117 +76,126 @@ const Sidebar = () => {
   const recent = entries.slice(0, 5);
 
   return (
-    <div id="sidebar">
-      <div className="sidebar--toggle">
-        <FaChevronLeft />
-      </div>
-      <Link
-        className="home"
-        to="/"
-        onClick={() =>
-          setSelectedEntry({
-            title: '',
-            entryBody: '',
-          })
-        }
+    <div
+      className={
+        toggleSidebar
+          ? 'sidebar-wrapper sidebar__show'
+          : 'sidebar-wrapper'
+      }
+    >
+      <div
+        onClick={() => setToggleSidebar(!toggleSidebar)}
+        className="sidebar--toggle__mobile"
       >
-        <FaFileAlt />
-      </Link>
-      {/*
+        {toggleSidebar ? <FaChevronLeft /> : <FaChevronRight />}
+      </div>
+
+      <div className="sidebar ">
+        <div
+          onClick={() => setToggleSidebar(!toggleSidebar)}
+          className="sidebar--toggle"
+        >
+          {toggleSidebar ? <FaChevronLeft /> : <FaChevronRight />}
+        </div>
+        {/*
       - Recent
       - Categories
       - New Entry
        */}
-      <div className="margin--vert">
-        <h5 className="type-color--secondary">Recent</h5>
-        <ul className="margin--vert">
-          {entries && entries.length > 0 ? (
-            recent.map(entri => (
-              <Link key={entri.entryId} to="/">
-                {' '}
-                <li
-                  key={entri.entryId}
-                  className="items"
-                  onClick={() => {
-                    setSelectedEntry(entri);
-                  }}
-                >
-                  <span className="margin--right">
-                    {toTitleCase(entri.title)}{' '}
-                  </span>
-                  <FaFileAlt />
-                </li>
-              </Link>
-            ))
-          ) : (
-            <div className="loading">
-              <div className="p"></div>
-              <div className="p"></div>
-              <div className="p"></div>
-            </div>
-          )}
-        </ul>
-        <Link
-          to="/list-entries"
-          className="btn btn--secondary margin-vert"
-          onClick={() => setSelectedCategory('')}
-        >
-          All Entries
-        </Link>
-      </div>
-      {allCategories.length > 0 ? (
-        <div className="margin-vert">
-          <h5 className="type-color--secondary">Categories</h5>
-          <div className="categories container margin--vert">
-            {allCategories ? (
-              allCategories.map(cat => (
-                <Link key={cat + newId} to="/list-entries">
-                  {' '}
-                  <li
-                    className={
-                      selectedCategory === cat
-                        ? 'category category__selected'
-                        : 'category'
-                    }
-                    onClick={() => setSelectedCategory(cat)}
-                  >
-                    {cat}
-                  </li>
-                </Link>
-              ))
-            ) : (
-              <div className="loading">
-                <div className="p"></div>
-                <div className="p"></div>
-                <div className="p"></div>
-              </div>
-            )}
+        <div className="margin--vert">
+          <Link to="/">
+            <button
+              className="margin--vert btn"
+              onClick={() => {
+                setIsNewEntry(!isNewEntry);
+                let dateCreated = new Date();
+                dateCreated = moment(dateCreated, 'LLL').format();
+                setEntry(prevEntry => {
+                  return {
+                    ...prevEntry,
+                    entryId: entryId,
+                    dateCreated: dateCreated,
+                    entryBody: '',
+                    user: 'luca',
+                  };
+                });
+              }}
+            >
+              New Entry
+            </button>
+          </Link>
+          <div className="menu-list">
+            <h5 className="type-color--secondary">Recent</h5>
+            <ul className="margin--vert">
+              {entries && entries.length > 0 ? (
+                recent.map(entri => (
+                  <Link key={entri.entryId} to="/">
+                    {' '}
+                    <li
+                      key={entri.entryId}
+                      className="items"
+                      onClick={() => {
+                        setSelectedEntry(entri);
+                      }}
+                    >
+                      <span className="margin--right">
+                        {toTitleCase(entri.title)}{' '}
+                      </span>
+                      <FaFileAlt />
+                    </li>
+                  </Link>
+                ))
+              ) : (
+                <div className="loading">
+                  <div className="p"></div>
+                  <div className="p"></div>
+                  <div className="p"></div>
+                </div>
+              )}
+            </ul>
           </div>
+          <Link
+            to="/list-entries"
+            className="btn btn--secondary margin-vert"
+            onClick={() => setSelectedCategory('')}
+          >
+            All Entries
+          </Link>
         </div>
-      ) : (
-        undefined
-      )}
-      <Link to="/">
-        <button
-          className="margin--top"
-          onClick={() => {
-            setIsNewEntry(!isNewEntry);
-            let dateCreated = new Date();
-            dateCreated = moment(dateCreated, 'LLL').format();
-            setEntry(prevEntry => {
-              return {
-                ...prevEntry,
-                entryId: entryId,
-                dateCreated: dateCreated,
-                entryBody: '',
-                user: 'luca',
-              };
-            });
-          }}
-        >
-          New Entry
-        </button>
-      </Link>
+        {allCategories.length > 0 ? (
+          <div className="margin-vert menu-list">
+            <h5 className="type-color--secondary">Categories</h5>
+            <div className="categories container margin--vert">
+              {allCategories ? (
+                allCategories.map(cat => (
+                  <Link key={cat + newId} to="/list-entries">
+                    {' '}
+                    <li
+                      className={
+                        selectedCategory === cat
+                          ? 'category category__selected'
+                          : 'category'
+                      }
+                      onClick={() => setSelectedCategory(cat)}
+                    >
+                      {cat}
+                    </li>
+                  </Link>
+                ))
+              ) : (
+                <div className="loading">
+                  <div className="p"></div>
+                  <div className="p"></div>
+                  <div className="p"></div>
+                </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          undefined
+        )}
+        <SignOutButton />
+      </div>
     </div>
   );
 };

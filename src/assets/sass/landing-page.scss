@@ -1,0 +1,75 @@
+.landing {
+  $header-font-base-modile: 18px;
+  $header-font-base: 18px;
+  // Type hierarchy scaler
+  $type-scaler: 1.3;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Unna', serif;
+    line-height: 1.4;
+    margin: 0px;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: $header-font-base-modile * $type-scaler * $type-scaler *
+      $type-scaler * $type-scaler * $type-scaler * $type-scaler;
+  }
+
+  h2 {
+    font-size: $header-font-base-modile * $type-scaler * $type-scaler *
+      $type-scaler * $type-scaler * $type-scaler;
+  }
+
+  h3 {
+    font-size: $header-font-base-modile * $type-scaler * $type-scaler *
+      $type-scaler * $type-scaler;
+  }
+
+  h4 {
+    font-size: $header-font-base-modile * $type-scaler * $type-scaler *
+      $type-scaler;
+  }
+
+  h5 {
+    font-size: $header-font-base-modile * $type-scaler * $type-scaler;
+  }
+
+  h6 {
+    font-size: $header-font-base-modile;
+  }
+
+  .milli {
+    font-size: $header-font-base-modile/$type-scaler;
+  }
+
+  .micro {
+    font-size: 0.5rem;
+  }
+
+  // hero
+  .hero--img {
+    width: 100%;
+    height: auto;
+    margin-bottom: -1rem;
+  }
+  .hero-copy {
+    position: absolute;
+    top: 0px;
+  }
+  .hero {
+    position: relative;
+  }
+
+  .display-char--img {
+    display: block;
+    // margin: auto;
+    width: 100%;
+    max-height: 450px;
+  }
+}

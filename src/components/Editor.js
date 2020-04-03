@@ -43,14 +43,14 @@ const Editor = () => {
     }
     if (entryChanged) {
       setSelectedEntry(selectedEntry);
-      console.log('upded', selectedEntry);
     }
+    console.log('upded', selectedEntry);
   }, [selectedEntry]);
 
   const deleteEntry = e => {
     firebase.db
       .collection('entries')
-      .doc(entry.entryId)
+      .doc(selectedEntry.entryId)
       .delete()
       .then(() => {
         setSelectedEntry({
@@ -134,7 +134,7 @@ const Editor = () => {
   };
 
   return (
-    <div id="editor" className="margin--hor">
+    <div className="editor margin--hor">
       {selectedEntry ? (
         <>
           <div className="char-80 categories padding--vert padding--left">
@@ -155,8 +155,8 @@ const Editor = () => {
                 ))
               : undefined}
           </div>
-          <div>
-            <button className="margin--all" onClick={updateEntry}>
+          <div className="entry-functions">
+            <button className="margin--all btn" onClick={updateEntry}>
               {numberOfChanges !== 0 ? (
                 <span>
                   Save {numberOfChanges} changes <FaSyncAlt />

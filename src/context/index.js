@@ -1,4 +1,10 @@
 import {
+  AuthContext,
+  AuthProvider,
+  useAuthValue,
+} from './auth-context';
+
+import {
   FirebaseContext,
   FirebaseProvider,
   useFirebaseValue,
@@ -23,6 +29,9 @@ import {
 } from './previewers-context';
 
 export {
+  AuthContext,
+  AuthProvider,
+  useAuthValue,
   FirebaseContext,
   FirebaseProvider,
   useFirebaseValue,

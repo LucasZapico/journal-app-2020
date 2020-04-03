@@ -25,32 +25,72 @@
 }
 
 .margin {
-  &--all__m {
-    margin: 2rem;
+  &--all {
+    &__m {
+      margin: 2rem;
+    }
+    &__l {
+      margin: 4rem;
+    }
   }
-  &--vert__m {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+  &--vert {
+    &__m {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+    &__l {
+      margin-top: 4rem;
+      margin-bottom: 4rem;
+    }
   }
-  &--hor__m {
-    margin-left: 2rem;
-    margin-right: 2rem;
+  &--hor {
+    &__m {
+      margin-left: 2rem;
+      margin-right: 2rem;
+    }
+    &__l {
+      margin-left: 4rem;
+      margin-right: 4rem;
+    }
   }
-  &--top__m {
-    margin-top: 2rem;
+  &--top {
+    &__m {
+      margin-top: 2rem;
+    }
+    &__l {
+      margin-top: 4rem;
+    }
   }
-  &--bottom__m {
-    margin-bottom: 2rem;
+  &--bottom {
+    &__m {
+      margin-bottom: 2rem;
+    }
+    &__l {
+      margin-bottom: 4rem;
+    }
   }
-  &--left__m {
-    margin-left: 2rem;
+  &--left {
+    &__m {
+      margin-left: 2rem;
+    }
+    &__l {
+      margin-left: 4rem;
+    }
   }
-  &--right__m {
-    margin-right: 2rem;
+  &--right {
+    &__m {
+      margin-right: 2rem;
+    }
+    &__l {
+      margin-right: 4rem;
+    }
   }
 }
 
 .padding {
+  &--kill {
+    padding: 0px;
+  }
   &--all {
     padding: 1rem;
   }

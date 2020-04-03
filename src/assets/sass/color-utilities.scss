@@ -1,3 +1,20 @@
 .type-color--secondary {
   color: lighten($color-type-primary, 15%);
 }
+
+.type-color--display {
+  color: lighten($color-b, 10%);
+}
+
+.type-color--display__alt {
+  color: darken($color-a, 5%);
+}
+
+.bg-color-a2 {
+  background-color: darken($color-a, 5%);
+}
+
+.bg-color-sec {
+  background-color: $color-b;
+  color: $color-a;
+}

@@ -8,10 +8,10 @@ The current status of the app can be [viewed here](https://journal-app-2020.web.
 
 _A running todo list because I haven't got around to setting up proper project management for this app._
 
-- delete category in entry view on click
-- auto resize text area
+- [x] delete category in entry view on click
+- [x] auto resize text area
   - add text area metrics --> word count, reading time
-- auto hide sidenav on word count
+- [x] auto hide sidenav on word count
 - category filter
 - search
 - add syntax based category addition to markdown
@@ -21,6 +21,16 @@ _A running todo list because I haven't got around to setting up proper project m
 - enhance show/hide sidenav preview/code/ etc views
 - accessibility
 - refine style classes
+- [ ] add tooltip component
+- [ ] add quickguide
+
+#### Table and mobile view
+
+- [ ] handle categories
+
+### Landing Page
+
+- [ ] add gif for category function
 
 * **Support Accounts**
 * support multiple users
