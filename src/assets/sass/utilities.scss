@@ -115,3 +115,66 @@
     padding-right: 1rem;
   }
 }
+
+.padding {
+  &--all {
+    &__m {
+      padding: 2rem;
+    }
+    &__l {
+      padding: 4rem;
+    }
+  }
+  &--vert {
+    &__m {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+    &__l {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+  }
+  &--hor {
+    &__m {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    &__l {
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+  }
+  &--top {
+    &__m {
+      padding-top: 2rem;
+    }
+    &__l {
+      padding-top: 4rem;
+    }
+  }
+  &--bottom {
+    &__m {
+      padding-bottom: 2rem;
+    }
+    &__l {
+      padding-bottom: 4rem;
+    }
+  }
+  &--left {
+    &__m {
+      padding-left: 2rem;
+    }
+    &__l {
+      padding-left: 4rem;
+    }
+  }
+  &--right {
+    &__m {
+      padding-right: 2rem;
+    }
+    &__l {
+      padding-right: 4rem;
+    }
+  }
+}

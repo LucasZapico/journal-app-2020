@@ -1,5 +1,10 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from 'react-router-dom';
 import * as ROUTES from './constants/routes';
 
 import Navigation from './components/Navigation';
@@ -15,6 +20,7 @@ import {
 import FeatureBar from './components/FeatureBar';
 import ListEntries from './components/ListEntries';
 import SignInPage from './components/SignIn';
+import PageNotFound from './components/PageNotFound';
 
 const App = () => {
   const { currentUser, setCurrentUser } = useAuthValue();
@@ -31,21 +37,36 @@ const App = () => {
       <div className="app-wrap">
         {currentUser ? (
           <>
-            <Sidebar />
-            <Route
-              path={ROUTES.ALL_ENTRIES}
-              component={ListEntries}
-            />
-            <Route exact path={ROUTES.HOME} component={Home} />
+            <Switch>
+              <>
+                <Sidebar />
+                <Route
+                  exact
+                  path={ROUTES.ALL_ENTRIES}
+                  component={ListEntries}
+                />
+                <Route exact path={ROUTES.HOME} component={Home} />
+              </>
+              <Route component={PageNotFound} />
+            </Switch>
           </>
         ) : (
           <>
-            <Route path={ROUTES.LANDING} component={Landing} />
-            <Route
-              exact
-              path={ROUTES.SIGN_IN}
-              component={SignInPage}
-            />
+            <Switch>
+              <Route
+                exact
+                path={ROUTES.LANDING}
+                component={Landing}
+              />
+              <Redirect exact from="/" to={ROUTES.LANDING} />
+
+              <Route
+                exact
+                path={ROUTES.SIGN_IN}
+                component={SignInPage}
+              />
+              <Route component={PageNotFound} />
+            </Switch>
           </>
         )}
       </div>

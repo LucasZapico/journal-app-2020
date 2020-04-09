@@ -1,0 +1,36 @@
+._404 {
+  background-color: #f9f0e1;
+
+  & > div:first-of-type() {
+    margin: auto;
+  }
+  ._404--img {
+    max-width: 100%;
+    position: absolute;
+    z-index: -1;
+    bottom: 0px;
+    object-fit: contain;
+  }
+  h1,
+  h3 {
+    text-align: center;
+
+    color: #553b11;
+  }
+  h1 {
+    font-size: 105px;
+  }
+  h3 {
+    font-size: 45px;
+  }
+
+  a {
+    text-align: center;
+    color: $color-a;
+    width: 200px;
+    padding: 1rem;
+    background-color: $color-b;
+    display: block;
+    margin: auto;
+  }
+}

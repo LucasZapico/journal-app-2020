@@ -2,7 +2,7 @@
 
 The objective of this project is to make a chronological markdown enabled journal using React hook, context and firebase.
 
-The current status of the app can be [viewed here](https://journal-app-2020.web.app/)
+The current status of the app can be [viewed here](https://journal-app-2020.web.app/landing)
 
 ## Features Todo
 
@@ -12,17 +12,30 @@ _A running todo list because I haven't got around to setting up proper project m
 - [x] auto resize text area
   - add text area metrics --> word count, reading time
 - [x] auto hide sidenav on word count
-- category filter
-- search
-- add syntax based category addition to markdown
-- add code preview with styling support
+
+- [ ] category filter
+- [ ] search
+- [x] add syntax based category addition to markdown
+- [x] add code preview with styling support
 - review general ux
-- add auto save and update
-- enhance show/hide sidenav preview/code/ etc views
+- [x] add auto save and update
+- [x] enhance show/hide sidenav
+- [x] enhance preview/code/ etc views
 - accessibility
-- refine style classes
-- [ ] add tooltip component
-- [ ] add quickguide
+- [ ] refine style classes
+- [ ] add dark mode
+- [ ] enhance onboarding --> how to use the product
+  - [ ] add tooltip component
+  - [ ] add quickguide
+- [x] bad url redirect
+
+#### Category handling
+
+- [ ] remove category from page inline removes from category list... and vice versa
+
+## Ux catch
+
+- [ ] create a loading view
 
 #### Table and mobile view
 
@@ -32,10 +45,17 @@ _A running todo list because I haven't got around to setting up proper project m
 
 - [ ] add gif for category function
 
+### Api functionalliyt
+
+- [ ] snippetes
+- [ ] good to go api
+
 * **Support Accounts**
-* support multiple users
-  - add, remove users
-  - add landing page
+
+- [x] support multiple users
+  - [ ] add, remove users
+  - [x] add landing page
+  - [ ] add getting started first post on user creation
 
 ### Brain Storm
 

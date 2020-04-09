@@ -5,11 +5,6 @@ const Landing = () => {
   return (
     <div className="landing grid page">
       <div className="hero ">
-        <img
-          className="hero--img"
-          src="img/landing-page.png"
-          alt="hero flat mount graphic"
-        ></img>
         <div className="margin--top__l margin--left__m width--75 hero-copy">
           <h1 className="type-color--display">Meet Mark'ie</h1>
           <h3>A syntax focused Markdown journal</h3>
@@ -17,6 +12,11 @@ const Landing = () => {
             <button>Sign In</button>
           </Link>
         </div>
+        <img
+          className="hero--img"
+          src="img/landing-page.png"
+          alt="hero flat mount graphic"
+        ></img>
       </div>
       <section className="bg-color-sec padding--top__l">
         <div className="width--66">
@@ -39,7 +39,7 @@ const Landing = () => {
           </p>
         </div>
       </section>
-      <section>
+      <section className="padding--vert__l">
         <div className="width--66">
           <div>
             <h3>The Challenge</h3>
@@ -59,38 +59,73 @@ const Landing = () => {
           </div>
         </div>
       </section>
-      <div className="bg-color-a2 ">
-        <img
-          className="display-char--img"
-          src="img/order-lady-mountain.png"
-          alt="order lady"
-        ></img>
-      </div>
-      <section className="bg-color-a2">
+
+      <section className="bg-color-a2 ">
         <div>
           <h3>Features</h3>
 
-          <div className="flex-container flex--justify__space-between">
-            <div className="padding--right">
-              <h5>Define Categories Via Syntax</h5>
+          <div className="card-group margin--top__m ">
+            <div className="padding--right card bg-color-sec">
+              <h5 className="type-color--display__alt">
+                Define Categories Via Syntax
+              </h5>
               <p>
                 Use <code>__c__Some Category__c__</code> to apply
                 categories to a entry.
               </p>
             </div>
-            <div className="padding--hor">
-              <h5>Auto Save Changes</h5>
+            <div className="padding--hor  card bg-color-sec  ">
+              <h5 className="type-color--display__alt">
+                Auto Save Changes
+              </h5>
               <p>Changes are saved as you write.</p>
             </div>
-            <div className="padding--left">
-              <h5>Find Entries Easily</h5>
+            <div className="padding--left  card bg-color-sec">
+              <h5 className="type-color--display__alt">
+                Find Entries Easily
+              </h5>
               <p>
-                Search for entries via logical operators on categories
+                Search for entries via logical operators on
+                categories.
               </p>
             </div>
           </div>
         </div>
       </section>
+      <div className="bg-color-a2 padding--top__l">
+        <img
+          className="display-char--img padding--top__m"
+          src="img/order-lady-mountain-v1.2.svg"
+          alt="order lady"
+        ></img>
+      </div>
+      <footer className="padding--all__l flex-container">
+        <div>
+          <h5>Cheers</h5>
+          <p>
+            Thanks for checking out this little app. Mark'ie was built
+            A to Z by Lucas Zapico. This includes the comical art
+            direction on this landing page. Enjoy!
+          </p>
+        </div>
+        <div>
+          <h5>Contact</h5>
+          <div className="margin--vert">
+            <a href="https://lucaszapico.space/">The Portfolio</a>
+          </div>
+          <div className="margin--vert">
+            <a href="https://www.linkedin.com/in/lucasmmzapico/">
+              The LinkedIn
+            </a>
+          </div>
+          <div className="margin--vert">
+            <a href="https://github.com/LucasZapico">The Github</a>
+          </div>
+          <div className="margin--vert">
+            <a href="https://codepen.io/LucasZapico">The Codepen</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

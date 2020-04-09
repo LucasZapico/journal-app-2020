@@ -28,6 +28,9 @@ button,
     background-color: $color-a;
     border: 1px solid darken($color-a, 20%);
   }
+  &.btn__100w {
+    width: 100%;
+  }
 }
 
 a {

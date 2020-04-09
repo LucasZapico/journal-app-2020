@@ -24,11 +24,16 @@ const Editor = () => {
   );
 
   const updateEntry = e => {
+    let dateUpdated = new Date();
+    dateUpdated = moment(dateUpdated, 'LLL').format();
     firebase.db
       .collection('entries')
       .doc(entry.entryId)
       .update(entry)
       .then(() => {
+        setSelectedEntry(prevEntry => {
+          return { ...prevEntry, dateUpdated: dateUpdated };
+        });
         setEntries([...entries]);
         setEntryInterval(entry);
       })
@@ -37,7 +42,7 @@ const Editor = () => {
 
   useEffect(() => {
     reSizeTextArea(textArea);
-    if (numberOfChanges > 10) {
+    if (numberOfChanges > 5) {
       setEntryInterval(selectedEntry);
       updateEntry();
     }
@@ -85,9 +90,11 @@ const Editor = () => {
         'MMMM DD  YYYY',
       );
       let newStr = `date-created ${formatedDate}`;
+      console.log('date', newStr);
       newBody.replace('add-date-created', newStr);
       setEntryChanged(true);
       console.log('test', selectedEntry.entryBody);
+      console.log('newbody', newBody);
     }
 
     // get all instance of elements with category syntax
@@ -98,8 +105,8 @@ const Editor = () => {
         // clean for consistency
         categoriesSet.add(
           el
-            .trim()
             .toLowerCase()
+            .trim()
             .replace(' ', '-'),
         ),
       );
@@ -133,6 +140,17 @@ const Editor = () => {
     }
   };
 
+  const removeCat = el => {
+    let newCategories = selectedEntry.categories.filter(
+      cat => cat !== el,
+    );
+    setSelectedEntry(prevEntry => {
+      return { ...prevEntry, categories: newCategories };
+    });
+    setEntry(selectedEntry);
+    setEntryChanged(true);
+  };
+
   return (
     <div className="editor margin--hor">
       {selectedEntry ? (
@@ -151,7 +169,12 @@ const Editor = () => {
           <div className="char-80 categories padding--vert">
             {selectedEntry.categories
               ? selectedEntry.categories.map(cat => (
-                  <li className="category">{cat}</li>
+                  <li
+                    onClick={() => removeCat(cat)}
+                    className="category"
+                  >
+                    {cat}
+                  </li>
                 ))
               : undefined}
           </div>

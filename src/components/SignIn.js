@@ -7,11 +7,18 @@ import * as ROUTES from '../constants/routes';
 
 const SignInPage = () => {
   return (
-    <div className="container">
-      <h2>Admin SignIn</h2>
-      <div className="neu-pos padding-md">
-        <SignInForm />
-        <SocialLogins />
+    <div className="margin--top__l flex-container flex--justify__center flex-align__center ">
+      <div className="sign-in bg-color-a2 padding--all__l">
+        <h2>Sign In</h2>
+        <div className="neu-pos padding-md">
+          <SignInForm />
+          <p>
+            To checkout the app sign in using <br></br>
+            <strong>email: l10zapico@hotmail.com</strong> <br></br>
+            <strong>password: admin1234</strong>{' '}
+          </p>
+          <SocialLogins />
+        </div>
       </div>
     </div>
   );
@@ -47,9 +54,9 @@ const SignInForm = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className=" margin--top__m">
       <input
-        className="input"
+        className="input "
         name="email"
         value={user.email}
         onChange={e => setUser({ ...user, email: e.target.value })}
@@ -65,7 +72,9 @@ const SignInForm = () => {
         placeholder="Password"
       />
 
-      <button type="submit">Sign In</button>
+      <button type="submit" className="btn btn__100w margin--top__m">
+        Sign In
+      </button>
       {user.error && <p>{user.error.message}</p>}
     </form>
   );
@@ -92,9 +101,13 @@ const SocialLogins = () => {
   };
 
   return (
-    <div>
-      <h6>Social Logins</h6>
-      <button onClick={socialSignOn} role="button">
+    <div className="margin--top__l">
+      <h4>Social Logins</h4>
+      <button
+        onClick={socialSignOn}
+        role="button"
+        className="btn btn__100w margin--top__m"
+      >
         Sign In with Google <FaGoogle />
       </button>
     </div>
