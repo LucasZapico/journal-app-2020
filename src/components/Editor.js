@@ -169,12 +169,7 @@ const Editor = () => {
           <div className="char-80 categories padding--vert">
             {selectedEntry.categories
               ? selectedEntry.categories.map(cat => (
-                  <li
-                    onClick={() => removeCat(cat)}
-                    className="category"
-                  >
-                    {cat}
-                  </li>
+                  <li className="category">{cat}</li>
                 ))
               : undefined}
           </div>

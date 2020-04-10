@@ -7,6 +7,7 @@ input[type='tel'],
 input[type='url'],
 input[type='password'],
 textarea {
+  font-family: monospace;
   border: none;
   background-color: $color-a;
   font-size: 1.2rem;

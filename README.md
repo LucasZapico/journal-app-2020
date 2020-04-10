@@ -4,6 +4,10 @@ The objective of this project is to make a chronological markdown enabled journa
 
 The current status of the app can be [viewed here](https://journal-app-2020.web.app/landing)
 
+### Bugs
+
+- [ ] some changes are not reflected when entry is clicked again.
+
 ## Features Todo
 
 _A running todo list because I haven't got around to setting up proper project management for this app._
@@ -15,6 +19,7 @@ _A running todo list because I haven't got around to setting up proper project m
 
 - [ ] category filter
 - [ ] search
+- [ ] write firebase storage ruless.
 - [x] add syntax based category addition to markdown
 - [x] add code preview with styling support
 - review general ux
@@ -28,6 +33,14 @@ _A running todo list because I haven't got around to setting up proper project m
   - [ ] add tooltip component
   - [ ] add quickguide
 - [x] bad url redirect
+- [ ] ?? handle quotes ??
+
+- [ ] variable fontsize
+- [ ] add a syntax cheat sheet toggle
+
+### House Keeping
+
+- [ ] optimize svg's
 
 #### Category handling
 
@@ -45,10 +58,10 @@ _A running todo list because I haven't got around to setting up proper project m
 
 - [ ] add gif for category function
 
-### Api functionalliyt
+### Api functionalliy
 
 - [ ] snippetes
-- [ ] good to go api
+- [ ] good to go apicd
 
 * **Support Accounts**
 

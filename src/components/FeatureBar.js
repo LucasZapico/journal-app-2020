@@ -9,9 +9,9 @@ const FeatureBar = () => {
       <div onClick={() => setShowPreview(!showPreview)}>
         <FaFileImage />
       </div>
-      <div>
+      {/* <div>
         <FaFileCode />
-      </div>
+      </div> */}
     </div>
   );
 };

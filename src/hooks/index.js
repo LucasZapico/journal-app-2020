@@ -8,7 +8,6 @@ import {
 
 export const useEntries = () => {
   const { currentUser } = useAuthValue();
-  console.log('firebase', currentUser);
   const firebase = useFirebaseValue(FirebaseContext);
   const [entries, setEntries] = useState([]);
 
@@ -16,6 +15,7 @@ export const useEntries = () => {
   }
 
   useEffect(() => {
+    console.log('current user', currentUser);
     if (currentUser) {
       firebase.db
         .collection('entries')
@@ -35,6 +35,9 @@ export const useEntries = () => {
         });
     }
   }, [entries, currentUser]);
+
+  // set first user getting started guid
+
   return { entries, setEntries };
 };
 

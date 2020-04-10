@@ -24,12 +24,17 @@ import PageNotFound from './components/PageNotFound';
 
 const App = () => {
   const { currentUser, setCurrentUser } = useAuthValue();
+  if (currentUser) {
+    console.log('current user', currentUser.email);
+  }
+
   const firebase = useFirebaseValue(FirebaseContext);
   useEffect(() => {
     firebase.auth.onAuthStateChanged(user => {
       user ? setCurrentUser(user) : setCurrentUser(null);
     });
   });
+
   return (
     <Router>
       {/* <Navigation authUser={currentUser} /> */}
@@ -47,6 +52,7 @@ const App = () => {
                 />
                 <Route exact path={ROUTES.HOME} component={Home} />
               </>
+
               <Route component={PageNotFound} />
             </Switch>
           </>
