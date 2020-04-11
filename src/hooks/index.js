@@ -5,6 +5,7 @@ import {
   FirebaseContext,
   useAuthValue,
 } from '../context';
+import { gettingStartedEntry } from '../constants/getting-started-entry';
 
 export const useEntries = () => {
   const { currentUser } = useAuthValue();
@@ -37,8 +38,13 @@ export const useEntries = () => {
   }, [entries, currentUser]);
 
   // set first user getting started guid
-
-  return { entries, setEntries };
+  if (entries.length != 0) {
+    return { entries, setEntries };
+  } else {
+    setEntries([...entries, gettingStartedEntry]);
+    return { entries, setEntries };
+    console.log('no entries ', entries);
+  }
 };
 
 // get window width on resize hook

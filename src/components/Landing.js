@@ -70,24 +70,39 @@ const Landing = () => {
                 Define Categories Via Syntax
               </h5>
               <p>
-                Use <code>__c__Some Category__c__</code> to apply
+                Easily define one or many categories an entry is part
+                of. Use <code>__c__Some Category__c__</code> to apply
                 categories to a entry.
               </p>
+              <div className="margin--top__m">
+                <img
+                  className="center"
+                  src="./img/categories-illustration-v1.0.1.svg"
+                  alt="mountain keyboard illustration"
+                ></img>
+              </div>
+            </div>
+            <div className="padding--left  card bg-color-sec">
+              <h5 className="type-color--display__alt">
+                Syntax First
+              </h5>
+              <p>
+                Simple inline syntax to influence functionality and
+                workflow.
+              </p>
+              <div className="margin--top__m">
+                <img
+                  className="center"
+                  src="./img/syntax-first-illustration.svg"
+                  alt="mountain keyboard illustration"
+                ></img>
+              </div>
             </div>
             <div className="padding--hor  card bg-color-sec  ">
               <h5 className="type-color--display__alt">
                 Auto Save Changes
               </h5>
               <p>Changes are saved as you write.</p>
-            </div>
-            <div className="padding--left  card bg-color-sec">
-              <h5 className="type-color--display__alt">
-                Find Entries Easily
-              </h5>
-              <p>
-                Search for entries via logical operators on
-                categories.
-              </p>
             </div>
           </div>
         </div>
