@@ -89,6 +89,9 @@ body,
       .feature-bar {
         background-color: lighten($color-c, 0%);
       }
+      .sign-in {
+        background-color: lighten($color-c, 15%);
+      }
       .sidebar {
         background-color: lighten($color-c, 0%);
         .btn {
@@ -129,6 +132,9 @@ body,
     &.light {
       background-color: $color-e;
       color: $color-c;
+      .sign-in {
+        background-color: lighten($color-e, 15%);
+      }
       .feature-bar {
         background-color: lighten($color-e, 0%);
       }

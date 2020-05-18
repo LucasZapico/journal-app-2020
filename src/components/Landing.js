@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as LandingMountains } from '../assets/img/mountian-hero.svg';
+import { ReactComponent as OldLadyMountain } from '../assets/img/order-lady-mountain-v1.2.svg';
 
 const Landing = () => {
   const handleScroll = e => {
@@ -125,11 +126,9 @@ const Landing = () => {
         </div>
       </section>
       <div className="display-ill padding--top__l">
-        <img
-          className="display-char--img padding--top__m"
-          src="img/order-lady-mountain-dark-v1.2.svg"
-          alt="order lady"
-        ></img>
+        <div className="display-char--img padding--top__m">
+          <OldLadyMountain />
+        </div>
       </div>
       <footer className="padding--all__l flex-container">
         <div>

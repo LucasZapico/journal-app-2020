@@ -4,7 +4,6 @@ import Preview from './Preview';
 import { usePreviewerValue, useSelectedEntryValue } from '../context';
 import FeatureBar from './FeatureBar';
 import CodePreview from './CodePreview';
-import ThemeToggle from './ThemeToggle';
 
 const Home = () => {
   const { showPreview } = usePreviewerValue();
@@ -12,7 +11,6 @@ const Home = () => {
 
   return (
     <div className="editor-wrapper">
-      <ThemeToggle />
       <FeatureBar />
       {selectedEntry.dateCreated == undefined ? (
         <div className="flex-container flex--justify__center flex--align__center">

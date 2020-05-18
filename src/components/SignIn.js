@@ -8,7 +8,7 @@ import * as ROUTES from '../constants/routes';
 const SignInPage = () => {
   return (
     <div className="margin--top__l flex-container flex--justify__center flex-align__center ">
-      <div className="sign-in bg-color-a2 padding--all__l">
+      <div className="sign-in  padding--all__l">
         <h2>Sign In</h2>
         <div className="neu-pos padding-md">
           <SignInForm />

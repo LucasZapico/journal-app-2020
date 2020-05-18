@@ -143,16 +143,35 @@ body,
           font-weight: 700;
         }
 
-        // hero
-        .hero--img {
-          svg {
-            path.mt-1--fill,
-            path.mt-2--fill {
+        svg {
+          path.mt-1--fill,
+          path.mt-2--fill {
+            fill: darken($color-c, 5%);
+          }
+          .mt-1--fill__shadow,
+          .mt-2--fill__shadow {
+            fill: lighten($color-c, 0%);
+          }
+          .old-lady {
+            &--hair {
               fill: darken($color-c, 5%);
             }
-            .mt-1--fill__shadow,
-            .mt-2--fill__shadow {
-              fill: lighten($color-c, 0%);
+            &--legs {
+              fill: #fbfbfb;
+            }
+            &--chest {
+              fill: #fbfbfb;
+            }
+            &--paper {
+              &:nth-of-type(2n) {
+                fill: darken(#fbfbfb, 10%);
+              }
+              &:nth-of-type(2n-1) {
+                fill: #fbfbfb;
+              }
+            }
+            &--box {
+              fill: #fbfbfb;
             }
           }
         }
@@ -187,15 +206,40 @@ body,
         }
 
         // hero
-        .hero--img {
-          svg {
-            path.mt-1--fill,
-            path.mt-2--fill {
-              fill: lighten($color-e, 15%);
+
+        svg {
+          path.mt-1--fill,
+          path.mt-2--fill {
+            fill: lighten($color-e, 15%);
+          }
+          .mt-1--fill__shadow,
+          .mt-2--fill__shadow {
+            fill: darken($color-e, 5%);
+          }
+          .mt-1--fill__shadow,
+          .mt-2--fill__shadow {
+            fill: lighten($color-c, 0%);
+          }
+          .old-lady {
+            &--hair {
+              fill: darken($color-c, 5%);
             }
-            .mt-1--fill__shadow,
-            .mt-2--fill__shadow {
-              fill: darken($color-e, 5%);
+            &--legs {
+              fill: $color-e;
+            }
+            &--chest {
+              fill: $color-e;
+            }
+            &--paper {
+              &:nth-of-type(2n) {
+                fill: darken($color-c, 10%);
+              }
+              &:nth-of-type(2n-1) {
+                fill: $color-c;
+              }
+            }
+            &--box {
+              fill: #fbfbfb;
             }
           }
         }
