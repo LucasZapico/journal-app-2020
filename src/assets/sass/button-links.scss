@@ -8,7 +8,6 @@ button,
   outline: none;
   border: none;
   border-radius: 5px;
-  height: 2rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 1rem;
@@ -36,4 +35,29 @@ button,
 a {
   text-decoration: none;
   color: inherit;
+}
+
+// Dark theme
+.app-wrap {
+  &.dark {
+    .btn {
+      background-color: lighten($color-c, 30%);
+
+      &.btn--secondary {
+        background-color: lighten($color-c, 30%);
+        border: 1px solid darken($color-c, 20%);
+      }
+    }
+  }
+  &.light {
+    .btn {
+      background-color: darken($color-e, 70%);
+      color: $color-e;
+      &.btn--secondary {
+        background-color: darken($color-e, 30%);
+        border: 1px solid darken($color-e, 20%);
+        color: $color-c;
+      }
+    }
+  }
 }

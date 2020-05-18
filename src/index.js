@@ -9,18 +9,21 @@ import {
   EntriesProvider,
   PreviewerProvider,
   AuthProvider,
+  ThemeProvider,
 } from './context';
 
 ReactDOM.render(
   <FirebaseProvider>
     <AuthProvider>
-      <EntriesProvider>
-        <SelectedEntryProvider>
-          <PreviewerProvider>
-            <App />
-          </PreviewerProvider>
-        </SelectedEntryProvider>
-      </EntriesProvider>
+      <ThemeProvider>
+        <EntriesProvider>
+          <SelectedEntryProvider>
+            <PreviewerProvider>
+              <App />
+            </PreviewerProvider>
+          </SelectedEntryProvider>
+        </EntriesProvider>
+      </ThemeProvider>
     </AuthProvider>
   </FirebaseProvider>,
   document.getElementById('root'),

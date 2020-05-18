@@ -12,11 +12,13 @@ The current status of the app can be [viewed here](https://journal-app-2020.web.
 
 _A running todo list because I haven't got around to setting up proper project management for this app._
 
+- [ ] fix inline timestamp feature
+- [ ] style links in previewer
 - [x] delete category in entry view on click
 - [x] auto resize text area
   - add text area metrics --> word count, reading time
 - [x] auto hide sidenav on word count
-
+- [ ] move the getting started part creation to the firebase functions
 - [ ] category filter
 - [ ] search
 - [ ] write firebase storage ruless.
@@ -34,9 +36,12 @@ _A running todo list because I haven't got around to setting up proper project m
   - [ ] add quickguide
 - [x] bad url redirect
 - [ ] ?? handle quotes ??
-
+- [ ] tabbing does not work in texteditor. It moves you onto the next potential field
 - [ ] variable fontsize
 - [ ] add a syntax cheat sheet toggle
+- [ ] add dark mode
+- [ ] easily switch between
+- [ ] handle dark theme on landing
 
 ### House Keeping
 

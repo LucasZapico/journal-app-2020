@@ -41,7 +41,13 @@ export const useEntries = () => {
   if (entries.length != 0) {
     return { entries, setEntries };
   } else {
-    setEntries([...entries, gettingStartedEntry]);
+    let dateCreated = new Date();
+    dateCreated = moment(dateCreated).format('MM/DD/YYYY');
+    let gettingStarted = {
+      ...gettingStartedEntry,
+      dateCreated: dateCreated,
+    };
+    setEntries([...entries, gettingStarted]);
     return { entries, setEntries };
     console.log('no entries ', entries);
   }

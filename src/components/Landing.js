@@ -1,7 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { ReactComponent as LandingMountains } from '../assets/img/mountian-hero.svg';
+
 const Landing = () => {
+  const handleScroll = e => {
+    console.log('ran');
+    let element = e.target;
+    if (
+      element.scrollHeight - element.scrollTop ===
+      element.clientHeight
+    ) {
+      // do something at end of scroll
+      console.log(e.target);
+    }
+  };
+
   return (
     <div className="landing grid page">
       <div className="hero ">
@@ -9,16 +23,19 @@ const Landing = () => {
           <h1 className="type-color--display">Meet Mark'ie</h1>
           <h3>A syntax focused Markdown journal</h3>
           <Link exact to="/sign-in">
-            <button>Sign In</button>
+            <button className="btn">Sign In</button>
           </Link>
         </div>
-        <img
+        {/* <img
           className="hero--img"
           src="img/landing-page.png"
           alt="hero flat mount graphic"
-        ></img>
+        ></img> */}
+        <div className="hero--img">
+          <LandingMountains onScroll={handleScroll} />
+        </div>
       </div>
-      <section className="bg-color-sec padding--top__l">
+      <section className="padding--top__l" onScroll={handleScroll}>
         <div className="width--66">
           <h3 className="type-color--display__alt">
             About this project
@@ -107,10 +124,10 @@ const Landing = () => {
           </div>
         </div>
       </section>
-      <div className="bg-color-a2 padding--top__l">
+      <div className="display-ill padding--top__l">
         <img
           className="display-char--img padding--top__m"
-          src="img/order-lady-mountain-v1.2.svg"
+          src="img/order-lady-mountain-dark-v1.2.svg"
           alt="order lady"
         ></img>
       </div>

@@ -12,7 +12,7 @@ const Preview = () => {
   }, [selectedEntry]);
 
   return (
-    <div id="preview">
+    <div class="preview">
       {preview !== 'Loading' ? (
         <ToMarkdown text={preview.entryBody} />
       ) : (

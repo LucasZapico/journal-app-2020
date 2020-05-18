@@ -1,4 +1,10 @@
 import {
+  ThemeContext,
+  ThemeProvider,
+  useThemeValue,
+} from './theme-context';
+
+import {
   AuthContext,
   AuthProvider,
   useAuthValue,
@@ -29,6 +35,9 @@ import {
 } from './previewers-context';
 
 export {
+  ThemeContext,
+  ThemeProvider,
+  useThemeValue,
   AuthContext,
   AuthProvider,
   useAuthValue,

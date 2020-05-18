@@ -33,6 +33,28 @@ h6,
   font-weight: 700;
 }
 
+.app-wrap {
+  &.dark {
+    .yotta,
+    .zetta,
+    h1,
+    .h1,
+    h2,
+    .h2,
+    h3,
+    .h3,
+    h4,
+    .h4,
+    h5,
+    .h5,
+    h6,
+    .h6 {
+      font-family: $header-font-family;
+      color: darken($color-type-primary--dark, 10%);
+    }
+  }
+}
+
 p {
   margin-bottom: 1.3rem;
 }

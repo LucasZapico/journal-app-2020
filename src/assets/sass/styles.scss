@@ -11,8 +11,8 @@
 @import './card.scss';
 @import './404';
 
-#feature-bar {
-  position: absolute;
+.feature-bar {
+  position: sticky;
   right: 0px;
   padding: 0px;
   border-radius: 5px;
@@ -35,5 +35,139 @@
     &:active {
       box-shadow: 5px 5px 5px #333333;
     }
+  }
+}
+
+// theme toggles
+.theme-toggles {
+  z-index: 2;
+  position: fixed;
+  top: 5px;
+  right: 20px;
+  height: 25px;
+  width: 75px;
+  display: flex;
+  justify-content: space-between;
+
+  .theme-toggle--container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  .toggle {
+    position: absolute;
+    top: 0px;
+    left: -20px;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+html,
+body,
+#root {
+  .app-wrap {
+    &.dark {
+      background-color: $color-c;
+      color: $color-type-primary--dark;
+      .feature-bar {
+        background-color: lighten($color-c, 0%);
+      }
+      .sidebar {
+        background-color: lighten($color-c, 0%);
+        .btn {
+          width: 100%;
+        }
+        .items {
+          & > svg {
+            fill: lighten($color-c, 30%);
+          }
+        }
+      }
+      .content {
+        .editor {
+          background-color: lighten($color-c, 15%);
+
+          input,
+          textarea,
+          div {
+            color: $color-type-primary--dark;
+            background-color: lighten($color-c, 15%);
+          }
+          .categories {
+            color: #63666a;
+            font-size: 1rem;
+            .category {
+              border: solid 1px darken($color-a, 10%);
+            }
+          }
+        }
+      }
+      .categories {
+        .category {
+          border: 1px solid lighten($color-c, 20%);
+          color: lighten($color-c, 50%);
+        }
+      }
+    } // end dark
+    &.light {
+      background-color: $color-e;
+      color: $color-c;
+      .feature-bar {
+        background-color: lighten($color-e, 0%);
+      }
+      .sidebar {
+        background-color: lighten($color-e, 0%);
+        .btn {
+          width: 100%;
+        }
+        .items {
+          & > svg {
+            fill: lighten($color-e, 30%);
+          }
+        }
+      }
+      .content {
+        .editor {
+          background-color: lighten($color-e, 15%);
+
+          input,
+          textarea,
+          div {
+            color: $color-c;
+            background-color: lighten($color-e, 15%);
+          }
+          .categories {
+            color: $color-c;
+            font-size: 1rem;
+            .category {
+              border: solid 1px lighten($color-c, 10%);
+            }
+          }
+        }
+      }
+      .categories {
+        .category {
+          border: 1px solid lighten($color-c, 20%);
+          color: lighten($color-c, 50%);
+        }
+      }
+    } // end dark
   }
 }

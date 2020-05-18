@@ -18,3 +18,16 @@
   background-color: $color-b;
   color: $color-a;
 }
+
+.app-wrap {
+  &.dark {
+    .type-color--secondary {
+      color: lighten($color-e, 15%);
+    }
+  }
+  &.light {
+    .type-color--secondary {
+      color: lighten($color-c, 15%);
+    }
+  }
+}
