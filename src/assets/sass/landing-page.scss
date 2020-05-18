@@ -157,10 +157,10 @@ body,
               fill: darken($color-c, 5%);
             }
             &--legs {
-              fill: #fbfbfb;
+              fill: $color-c;
             }
             &--chest {
-              fill: #fbfbfb;
+              fill: $color-c;
             }
             &--paper {
               &:nth-of-type(2n) {

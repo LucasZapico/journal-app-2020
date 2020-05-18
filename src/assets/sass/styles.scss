@@ -13,10 +13,11 @@
 
 .feature-bar {
   position: sticky;
-  right: 0px;
+  left: 95vw;
+  width: 40px;
   padding: 0px;
   border-radius: 5px;
-  top: 2rem;
+  top: 4rem;
   background-color: darken($color-a, 15%);
   & > div {
     cursor: pointer;
