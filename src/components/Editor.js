@@ -87,11 +87,12 @@ const Editor = () => {
     // update date stamp
     if (body.includes('add-date-created')) {
       let formatedDate = moment(selectedEntry.dateCreated).format(
-        'MMMM DD  YYYY',
+        'MMMM/DD/YYYY',
       );
       let newStr = `date-created ${formatedDate}`;
-      console.log('date', newStr);
-      newBody.replace('add-date-created', newStr);
+
+      newBody = newBody.replace('add-date-created', newStr);
+
       setEntryChanged(true);
       console.log('test', selectedEntry.entryBody);
       console.log('newbody', newBody);
