@@ -20,7 +20,6 @@ body,
     min-height: 100%;
     position: relative;
     display: flex;
-
     .categories {
       display: flex;
       flex-wrap: wrap;
@@ -40,6 +39,27 @@ body,
           font-weight: 600;
           border: 1px solid darken($color-a, 5%);
         }
+      }
+    }
+  }
+  // All  Entries Page
+  .entries-page {
+    margin-left: 100px;
+    .entries {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      .entry {
+        background-color: lighten($color-a, 5%);
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-bottom: 1rem;
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
     }
   }
@@ -78,9 +98,9 @@ body,
     display: none;
     &__mobile {
       display: block;
-      position: absolute;
+      position: fixed;
       top: 50%;
-      right: -25px;
+      left: 100px;
       z-index: 3;
       transition: all ease-in-out 0.2s;
       &:hover {
@@ -109,6 +129,10 @@ body,
     justify-content: space-between;
     .btn {
       width: 100%;
+    }
+    &--signout {
+      position: fixed;
+      bottom: -2rem;
     }
     .menu-list {
       overflow: hidden;
@@ -160,6 +184,7 @@ body,
         font-size: 1rem;
         .category {
           border: solid 1px darken($color-a, 10%);
+          font-size: 0.8rem;
         }
       }
     }
@@ -208,14 +233,27 @@ body,
           width: 20px;
           display: block;
           top: 50%;
-          position: relative;
-          right: -310px;
+          position: fixed;
+          left: 300px;
           &__mobile {
             display: none;
-            position: absolute;
+            position: fixed;
 
-            right: -25px;
+            left: 300px;
           }
+        }
+      }
+    }
+    // All Entries page > 800px
+    .entries-page {
+      margin-left: 0px;
+      .entries {
+        display: flex;
+        flex-wrap: wrap;
+        .entry {
+          flex-grow: 1;
+          flex-shrink: 1;
+          flex-basis: 40%;
         }
       }
     }

@@ -14,8 +14,11 @@ const SignInPage = () => {
           <SignInForm />
           <p>
             To checkout the app sign in using <br></br>
-            <strong>email: l10zapico@hotmail.com</strong> <br></br>
-            <strong>password: admin1234</strong>{' '}
+            <strong>
+              email: luc.testing.prime@protonmail.com
+            </strong>{' '}
+            <br></br>
+            <strong>password: test1234</strong>{' '}
           </p>
           <SocialLogins />
         </div>

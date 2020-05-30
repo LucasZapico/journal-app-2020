@@ -5,7 +5,8 @@ import { IoMdMoon, IoIosSunny, IoIosCloudy } from 'react-icons/io';
 const ThemeToggle = () => {
   const { theme, setTheme } = useThemeValue();
   return (
-    <div className="theme-toggles">
+    <div className="theme-toggles mt-2--fill__shadow">
+      <div>Theme Toggle</div>
       <label
         className="theme-toggle--container"
         onClick={() => setTheme('dark')}

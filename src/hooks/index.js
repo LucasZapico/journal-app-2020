@@ -6,6 +6,7 @@ import {
   useAuthValue,
 } from '../context';
 import { gettingStartedEntry } from '../constants/getting-started-entry';
+import { sortBy } from 'lodash';
 
 export const useEntries = () => {
   const { currentUser } = useAuthValue();
@@ -27,11 +28,16 @@ export const useEntries = () => {
             ...entry.data(),
             entryId: entry.id,
           }));
+          const allEntriesDateSort = sortBy(allEntries, [
+            obj => obj.dateCreated,
+          ]).reverse();
           console.log('all entries', allEntries);
+
           if (
-            JSON.stringify(allEntries) !== JSON.stringify(entries)
+            JSON.stringify(allEntriesDateSort) !==
+            JSON.stringify(entries)
           ) {
-            setEntries(allEntries);
+            setEntries(allEntriesDateSort);
           }
         });
     }

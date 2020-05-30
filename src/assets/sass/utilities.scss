@@ -25,6 +25,9 @@
 }
 
 .margin {
+  &--kill {
+    margin: 0px;
+  }
   &--all {
     &__m {
       margin: 2rem;

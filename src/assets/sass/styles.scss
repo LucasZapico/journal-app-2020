@@ -46,9 +46,14 @@
   top: 5px;
   right: 20px;
   height: 25px;
-  width: 75px;
+  width: 250px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   display: flex;
   justify-content: space-between;
+  &.mt-2--fill__shadow {
+    fill: lighten($color-c, 0%);
+  }
 
   .theme-toggle--container {
     display: block;
@@ -112,13 +117,14 @@ body,
           textarea,
           div {
             color: $color-type-primary--dark;
+            border-bottom: solid 1px darken($color-e, 10%);
             background-color: lighten($color-c, 15%);
           }
           .categories {
             color: #63666a;
             font-size: 1rem;
             .category {
-              border: solid 1px darken($color-a, 10%);
+              border: solid 1px darken($color-c, 10%);
             }
           }
         }
@@ -158,6 +164,7 @@ body,
           textarea,
           div {
             color: $color-c;
+            border-bottom: solid 1px darken($color-c, 10%);
             background-color: lighten($color-e, 15%);
           }
           .categories {

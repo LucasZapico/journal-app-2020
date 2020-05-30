@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { ReactComponent as LandingMountains } from '../assets/img/mountian-hero.svg';
+import { ReactComponent as LandingMountains } from '../assets/img/mountain-hero.svg';
+import { ReactComponent as CategoriesIll } from '../assets/img/categories-illustration-v1.0.1.svg';
 import { ReactComponent as OldLadyMountain } from '../assets/img/order-lady-mountain-v1.2.svg';
+import { ReactComponent as SyntaxFirst } from '../assets/img/syntax-first-illustration.svg';
+import { ReactComponent as AutoSave } from '../assets/img/auto-save.svg';
 
 const Landing = () => {
   const handleScroll = e => {
@@ -23,8 +26,13 @@ const Landing = () => {
         <div className="margin--top__l margin--left__m width--75 hero-copy">
           <h1 className="type-color--display">Meet Mark'ie</h1>
           <h3>A syntax focused Markdown journal</h3>
+          <p className="margin--bottom__m">
+            This product was built as a practice project with React
+            hooks, Firebase with the objective of mirroring a complete
+            product.
+          </p>
           <Link exact to="/sign-in">
-            <button className="btn">Sign In</button>
+            <button className="btn margin--top__m">Sign In</button>
           </Link>
         </div>
         {/* <img
@@ -37,7 +45,7 @@ const Landing = () => {
         </div>
       </div>
       <section className="padding--top__l" onScroll={handleScroll}>
-        <div className="width--66">
+        <div className="">
           <h3 className="type-color--display__alt">
             About this project
           </h3>
@@ -50,15 +58,15 @@ const Landing = () => {
           </h5>
           <p>
             This note is put forward in the vain hope that this
-            project will be measured in the vein that is was built.
-            Though in essence this is practice project, I try and
-            "practice how I play", and that means within a scope try
-            and deliver a complete product.
+            project will be measured in the vein that it was built.
+            Though in essence this is a practice project, trying to
+            "practice how I play", and that means within a scope and
+            delivering a "complete" product.
           </p>
         </div>
       </section>
       <section className="padding--vert__l">
-        <div className="width--66">
+        <div className="">
           <div>
             <h3>The Challenge</h3>
             <p>
@@ -93,11 +101,9 @@ const Landing = () => {
                 categories to a entry.
               </p>
               <div className="margin--top__m">
-                <img
-                  className="center"
-                  src="./img/categories-illustration-v1.0.1.svg"
-                  alt="mountain keyboard illustration"
-                ></img>
+                <div className="center icon-ill">
+                  <CategoriesIll />
+                </div>
               </div>
             </div>
             <div className="padding--left  card bg-color-sec">
@@ -109,11 +115,9 @@ const Landing = () => {
                 workflow.
               </p>
               <div className="margin--top__m">
-                <img
-                  className="center"
-                  src="./img/syntax-first-illustration.svg"
-                  alt="mountain keyboard illustration"
-                ></img>
+                <div className="center icon-ill">
+                  <SyntaxFirst />
+                </div>
               </div>
             </div>
             <div className="padding--hor  card bg-color-sec  ">
@@ -121,6 +125,11 @@ const Landing = () => {
                 Auto Save Changes
               </h5>
               <p>Changes are saved as you write.</p>
+              <div className="margin--top__m">
+                <div className="center icon-ill">
+                  <AutoSave />
+                </div>
+              </div>
             </div>
           </div>
         </div>

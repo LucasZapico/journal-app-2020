@@ -7,7 +7,7 @@ export const SelectedEntryProvider = ({ children }) => {
     title: '',
     entryBody: '',
   });
-  const [selectedCategory, setSelectedCategory] = useState();
+  const [selectedCategory, setSelectedCategory] = useState([]);
 
   return (
     <SelectedEntryContext.Provider

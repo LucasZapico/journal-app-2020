@@ -8,6 +8,7 @@ import {
 import moment from 'moment';
 import { FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { intersection } from 'lodash';
 
 const ListEntries = () => {
   const {
@@ -17,17 +18,23 @@ const ListEntries = () => {
   const firebase = useFirebaseValue(FirebaseContext);
   const { entries, setEntries } = useEntriesValue();
   const [entryList, setEntryList] = useState(entries);
+  const [confirmDelete, setConfirmDelete] = useState(0);
 
   useEffect(() => {
     setEntryList(entries);
   }, [entries]);
 
+  // listen for changes on categories and update list
   useEffect(() => {
     console.log('selec-cat', selectedCategory);
     let entriesFilted = '';
     if (entries.length > 0 && selectedCategory !== '') {
-      entriesFilted = entries.filter(entri =>
-        entri.categories.includes(selectedCategory),
+      entriesFilted = entries.filter(
+        entri =>
+          //
+
+          intersection(entri.categories, selectedCategory).length ===
+          selectedCategory.length,
       );
       setEntryList(entriesFilted);
     } else {
@@ -48,6 +55,15 @@ const ListEntries = () => {
       .catch(err => console.error(err));
   };
 
+  const confirmDeleteEntry = entry => {
+    if (confirmDelete == 0) {
+      setConfirmDelete(prev => prev + 1);
+    } else {
+      deleteEntry(entry);
+      setConfirmDelete(0);
+    }
+  };
+
   return (
     <div className="entries">
       {entryList &&
@@ -60,23 +76,31 @@ const ListEntries = () => {
             <Link to="/">
               <h5 className="margin--vert">{entry.title}</h5>
               <div>
-                <h6 className="type-color--secondary milli">
+                <p className="type-color--secondary milli margin--kill">
                   Date Created :{' '}
                   {moment(entry.dateCreated).format('MM/DD/YY')}
-                </h6>
-                <h6 className="type-color--secondary milli">
+                </p>
+                <p className="type-color--secondary milli margin--kill">
                   Last Updated :{' '}
                   {moment(entry.dateUpdated).format('MM/DD/YY')}
-                </h6>
+                </p>
               </div>
             </Link>
-            <button
-              className="btn btn--secondary margin--all"
-              onClick={() => deleteEntry(entry)}
-            >
-              <FaTrashAlt />
-              <span className="margin--left">Delete Entry Entry</span>
-            </button>
+            <div className="entry-card--actions">
+              <button
+                className="btn btn--secondary margin--top__m actions--delete "
+                onClick={() => confirmDeleteEntry(entry)}
+              >
+                <FaTrashAlt />
+                {confirmDelete ? (
+                  <span className="margin--left">
+                    Confirm Delete Entry
+                  </span>
+                ) : (
+                  undefined
+                )}
+              </button>
+            </div>
           </div>
         ))}
     </div>

@@ -19,7 +19,7 @@ import {
   useThemeValue,
 } from './context/';
 import FeatureBar from './components/FeatureBar';
-import ListEntries from './components/ListEntries';
+import EntriesPage from './components/ListEntryPage';
 import SignInPage from './components/SignIn';
 import PageNotFound from './components/PageNotFound';
 import ThemeToggle from './components/ThemeToggle';
@@ -75,7 +75,7 @@ const App = () => {
                 <Route
                   exact
                   path={ROUTES.ALL_ENTRIES}
-                  component={ListEntries}
+                  component={EntriesPage}
                 />
                 <Route exact path={ROUTES.HOME} component={Home} />
               </>

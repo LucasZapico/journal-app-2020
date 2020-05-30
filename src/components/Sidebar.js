@@ -38,6 +38,7 @@ const Sidebar = () => {
   });
   const [toggleSidebar, setToggleSidebar] = useState(false);
 
+  // sidebar adjustment on view size
   useEffect(() => {
     if (width > 900 && toggleSidebar != true) {
       console.log(width);
@@ -71,6 +72,7 @@ const Sidebar = () => {
       .collection('entries')
       .add(entry)
       .then(docRef => {
+        console.log();
         setEntry(prevEntry => {
           return {
             ...prevEntry,
@@ -82,6 +84,22 @@ const Sidebar = () => {
       })
       .then(setSelectedEntry(entry))
       .catch(err => console.error(err));
+  };
+
+  const handleSelectedCategory = cat => {
+    const catSet = new Set(selectedCategory);
+    if (selectedCategory.length === 0) {
+      // if cat arr empty add
+      setSelectedCategory(prevCatArr => [...prevCatArr, cat]);
+    } else if (catSet.has(cat)) {
+      // category exist in set, then remove
+
+      catSet.delete(cat);
+      setSelectedCategory([...Array.from(catSet)]);
+    } else {
+      setSelectedCategory(prevCatArr => [...prevCatArr, cat]);
+      // cat arr greater then 0 and category not in array
+    }
   };
 
   const recent = entries.slice(0, 5);
@@ -122,6 +140,7 @@ const Sidebar = () => {
                 onClick={() => {
                   setIsNewEntry(!isNewEntry);
                   let dateCreated = new Date();
+
                   dateCreated = moment(dateCreated).format(
                     'MM/DD/YYYY',
                   );
@@ -188,11 +207,11 @@ const Sidebar = () => {
                       {' '}
                       <li
                         className={
-                          selectedCategory === cat
+                          selectedCategory.includes(cat)
                             ? 'category category__selected'
                             : 'category'
                         }
-                        onClick={() => setSelectedCategory(cat)}
+                        onClick={() => handleSelectedCategory(cat)}
                       >
                         {cat}
                       </li>
@@ -211,7 +230,7 @@ const Sidebar = () => {
             undefined
           )}
         </div>
-        <div className="margin--bottom__l">
+        <div className="margin--bottom__l sidebar--signout">
           <SignOutButton />
         </div>
       </div>

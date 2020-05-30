@@ -12,7 +12,25 @@ The current status of the app can be [viewed here](https://journal-app-2020.web.
 
 _A running todo list because I haven't got around to setting up proper project management for this app._
 
+- [ ] Add a search to the categories section
+  - [ ] keyboard shortcut in
+- [ ] cookie for the theme so the user  doesn't have to change their theme preference each time
+- [ ] add user profile. 
+  - [ ] default theme 
+  - [ ] profile pic
+  - [ ] export all content
+- [ ] fix categories to have a unselect 
+- [ ] add and and or operations
+- [ ] add visual to and and or operations 
+- [ ] add a "like" option to landing page and in app
+- [ ] add leave a comment on landing page and in app
+
 - [ ] fix inline timestamp feature
+- [ ] add tabs for multiple entries open at a time ??
+- [ ] ensure focus stays on sentence as typing move down screen.
+- [ ] sign out should be fixed at the bottom of the view port
+- [ ] save and delete should be fixed within the view port
+- [ ] hide sidebar should be fixed within view port
 - [ ] style links in previewer
 - [x] delete category in entry view on click
 - [x] auto resize text area
@@ -30,7 +48,7 @@ _A running todo list because I haven't got around to setting up proper project m
 - [x] enhance preview/code/ etc views
 - accessibility
 - [ ] refine style classes
-- [ ] add dark mode
+- [x] add dark mode
 - [ ] enhance onboarding --> how to use the product
   - [ ] add tooltip component
   - [ ] add quickguide
@@ -41,11 +59,12 @@ _A running todo list because I haven't got around to setting up proper project m
 - [ ] add a syntax cheat sheet toggle
 - [ ] add dark mode
 - [ ] easily switch between
-- [ ] handle dark theme on landing
+- [x] handle dark theme on landing
 
 ### House Keeping
 
 - [ ] optimize svg's
+- [ ] enhance ui on mobile - svg and reading
 
 #### Category handling
 
