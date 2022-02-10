@@ -16,7 +16,7 @@
     "lodash": "^4.17.15",
     "marked": "^0.8.0",
     "moment": "^2.24.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "prettier": "^1.19.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
