@@ -15,7 +15,7 @@
     "firebase": "^7.10.0",
     "lodash": "^4.17.15",
     "marked": "^0.8.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "node-sass": "^4.13.1",
     "prettier": "^1.19.1",
     "react": "^16.13.0",
